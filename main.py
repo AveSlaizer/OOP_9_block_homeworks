@@ -32,8 +32,8 @@ class Human:
         self.address = address
 
     def __str__(self):
-        return f"ФИО: {self.name.values()}\n" \
-               f"Дата рождения: {self.birthday.values()}\n" \
+        return f"ФИО: {list(self.name.values())}\n" \
+               f"Дата рождения: {list(self.birthday.values())}\n" \
                f"Номер телефона: {self.telephone}\n" \
                f"Страна: {self.country}\n" \
                f"Город: {self.city}\n" \
@@ -42,7 +42,16 @@ class Human:
 
 
 def execute_application():
-    pass
+    name = {"фамилия": "Сушков", "имя": "Артем", "отчество": "Сергеевич"}
+    birthday = {"число": "11", "месяц": "Апрель", "год": "1988"}
+    phone = "+79201234567"
+    country = "Российская Федерация"
+    city = "Ярославль"
+    address = "ул. Пушкина д. 2 кв. 1098"
+
+    man = Human(name, birthday, phone, country, city, address)
+
+    print(man)
 
 
 if __name__ == "__main__":
