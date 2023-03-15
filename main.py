@@ -22,6 +22,15 @@ class Human:
     city: str
     address: str
 
+    def __init__(self, name: Dict[str, str], birthday: Dict[str, str], telephone: str,
+                 country: str, city: str, address: str):
+        self.name = name
+        self.birthday = birthday
+        self.telephone = telephone
+        self.country = country
+        self.city = city
+        self.address = address
+
 
 
 def execute_application():
