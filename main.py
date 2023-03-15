@@ -15,33 +15,6 @@ from typing import Dict
 # Задание 1
 class Human:
 
-    name: Dict[str, str]
-    birthday: Dict[str, str]
-    telephone: str
-    country: str
-    city: str
-    address: str
-
-    def __init__(self, name: Dict[str, str], birthday: Dict[str, str], telephone: str,
-                 country: str, city: str, address: str):
-        self.name = name
-        self.birthday = birthday
-        self.telephone = telephone
-        self.country = country
-        self.city = city
-        self.address = address
-
-    def __str__(self):
-        return f"ФИО: {list(self.name.values())}\n" \
-               f"Дата рождения: {list(self.birthday.values())}\n" \
-               f"Номер телефона: {self.telephone}\n" \
-               f"Страна: {self.country}\n" \
-               f"Город: {self.city}\n" \
-               f"Адрес: {self.address}\n"
-
-
-
-def execute_application():
     name = {"фамилия": "Сушков", "имя": "Артем", "отчество": "Сергеевич"}
     birthday = {"число": "11", "месяц": "Апрель", "год": "1988"}
     phone = "+79201234567"
@@ -49,8 +22,19 @@ def execute_application():
     city = "Ярославль"
     address = "ул. Пушкина д. 2 кв. 1098"
 
-    man = Human(name, birthday, phone, country, city, address)
 
+    def __str__(self):
+        return f"ФИО: {list(self.name.values())}\n" \
+               f"Дата рождения: {list(self.birthday.values())}\n" \
+               f"Номер телефона: {self.phone}\n" \
+               f"Страна: {self.country}\n" \
+               f"Город: {self.city}\n" \
+               f"Адрес: {self.address}\n"
+
+
+
+def execute_application():
+    man = Human()
     print(man)
 
 
