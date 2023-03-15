@@ -15,18 +15,27 @@ from typing import Dict
 
 # Задание 1
 class Human:
+
+    name: Dict[str, str]
+    birthday: Dict[str, str]
+    phone: str
+    country: str
+    city: str
+    address: str
+    """
     name = {"фамилия": "Сушков", "имя": "Артем", "отчество": "Сергеевич"}
     birthday = {"число": "11", "месяц": "Апрель", "год": "1988"}
     phone = "+79201234567"
     country = "Российская Федерация"
     city = "Ярославль"
     address = "ул. Пушкина д. 2 кв. 1098"
+    """
 
     def __init__(self, name: Dict[str, str], birthday: Dict[str, str], telephone: str,
                  country: str, city: str, address: str):
         self.name = name
         self.birthday = birthday
-        self.telephone = telephone
+        self.phone = telephone
         self.country = country
         self.city = city
         self.address = address
