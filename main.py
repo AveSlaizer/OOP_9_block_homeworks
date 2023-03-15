@@ -33,6 +33,18 @@ class Human:
                f"Адрес: {self.address}\n"
 
 
+# Задание 2
+class Book:
+
+    name = "Вредные советы"
+    author = "Остер Григорий Бенционович"
+    year = "2014"
+    publisher = "ACT"
+    genre = "Библиотека начальной школы"
+    price = 211.9
+
+
+
 def execute_application():
     man = Human()
     print(man)
