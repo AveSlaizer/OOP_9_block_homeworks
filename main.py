@@ -59,6 +59,13 @@ class Book:
     genre = "Библиотека начальной школы"
     price = 211.9
     """
+    def __init__(self, name: str, author: str, year: str, publisher: str, genre: str, price: float):
+        self.name = name
+        self. author = author
+        self.year = year
+        self.publisher = publisher
+        self.genre = genre
+        self.price = price
 
     def __str__(self):
         return f"Название: {self.name}\n" \
