@@ -15,7 +15,6 @@ from typing import Dict
 
 # Задание 1
 class Human:
-
     name: Dict[str, str]
     birthday: Dict[str, str]
     phone: str
@@ -43,7 +42,6 @@ class Human:
 
 # Задание 2
 class Book:
-
     name: str
     author: str
     year: str
@@ -51,17 +49,9 @@ class Book:
     genre: str
     price: float
 
-    """
-    name = "Вредные советы"
-    author = "Остер Григорий Бенционович"
-    year = "2014"
-    publisher = "ACT"
-    genre = "Библиотека начальной школы"
-    price = 211.9
-    """
     def __init__(self, name: str, author: str, year: str, publisher: str, genre: str, price: float):
         self.name = name
-        self. author = author
+        self.author = author
         self.year = year
         self.publisher = publisher
         self.genre = genre
@@ -89,7 +79,14 @@ def execute_application():
     print(man)
 
     # Задание 2
-    book = Book()
+    name = "Вредные советы"
+    author = "Остер Григорий Бенционович"
+    year = "2014"
+    publisher = "ACT"
+    genre = "Библиотека начальной школы"
+    price = 211.9
+
+    book = Book(name, author, year, publisher, genre, price)
     print(book)
 
 
