@@ -43,12 +43,22 @@ class Human:
 
 # Задание 2
 class Book:
+
+    name: str
+    author: str
+    year: str
+    publisher: str
+    genre: str
+    price: float
+
+    """
     name = "Вредные советы"
     author = "Остер Григорий Бенционович"
     year = "2014"
     publisher = "ACT"
     genre = "Библиотека начальной школы"
     price = 211.9
+    """
 
     def __str__(self):
         return f"Название: {self.name}\n" \
