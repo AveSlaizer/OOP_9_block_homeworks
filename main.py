@@ -15,7 +15,6 @@ from typing import Dict
 
 # Задание 1
 class Human:
-
     name = {"фамилия": "Сушков", "имя": "Артем", "отчество": "Сергеевич"}
     birthday = {"число": "11", "месяц": "Апрель", "год": "1988"}
     phone = "+79201234567"
@@ -23,6 +22,14 @@ class Human:
     city = "Ярославль"
     address = "ул. Пушкина д. 2 кв. 1098"
 
+    def __init__(self, name: Dict[str, str], birthday: Dict[str, str], telephone: str,
+                 country: str, city: str, address: str):
+        self.name = name
+        self.birthday = birthday
+        self.telephone = telephone
+        self.country = country
+        self.city = city
+        self.address = address
 
     def __str__(self):
         return f"ФИО: {list(self.name.values())}\n" \
@@ -35,7 +42,6 @@ class Human:
 
 # Задание 2
 class Book:
-
     name = "Вредные советы"
     author = "Остер Григорий Бенционович"
     year = "2014"
