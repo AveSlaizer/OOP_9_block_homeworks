@@ -56,6 +56,9 @@ def execute_application():
     man = Human()
     print(man)
 
+    book = Book()
+    print(book)
+
 
 if __name__ == "__main__":
     execute_application()
