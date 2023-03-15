@@ -12,6 +12,7 @@ from typing import Dict
 конструктор по умолчанию и метод для вывода данных.
 """
 
+
 # Задание 1
 class Human:
 
@@ -30,7 +31,6 @@ class Human:
                f"Страна: {self.country}\n" \
                f"Город: {self.city}\n" \
                f"Адрес: {self.address}\n"
-
 
 
 def execute_application():
