@@ -43,6 +43,13 @@ class Book:
     genre = "Библиотека начальной школы"
     price = 211.9
 
+    def __str__(self):
+        return f"Название: {self.name}\n" \
+               f"Автор: {self.author}\n" \
+               f"Год издания: {self.year}\n" \
+               f"Издатель: {self.publisher}\n" \
+               f"Жанр: {self.genre}\n" \
+               f"Цена: {self.price}\n"
 
 
 def execute_application():
