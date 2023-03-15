@@ -31,6 +31,14 @@ class Human:
         self.city = city
         self.address = address
 
+    def __str__(self):
+        return f"ФИО: {self.name.values()}\n" \
+               f"Дата рождения: {self.birthday.values()}\n" \
+               f"Номер телефона: {self.telephone}\n" \
+               f"Страна: {self.country}\n" \
+               f"Город: {self.city}\n" \
+               f"Адрес: {self.address}\n"
+
 
 
 def execute_application():
