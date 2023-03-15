@@ -53,9 +53,11 @@ class Book:
 
 
 def execute_application():
+    # Задание 1
     man = Human()
     print(man)
 
+    # Задание 2
     book = Book()
     print(book)
 
