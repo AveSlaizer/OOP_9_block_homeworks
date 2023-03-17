@@ -1,6 +1,5 @@
 from typing import Dict
 
-
 """
 Задание 1.
 Реализуйте класс «Человек». Необходимо хранить в полях класса: ФИО,
@@ -12,16 +11,15 @@ from typing import Dict
 
 
 class Human:
-    name: Dict[str, str]
 
     def __init__(self, name: Dict[str, str], birthday: Dict[str, str], phone: str,
                  country: str, city: str, address: Dict[str, str]):
-        self.__name = name
-        self.__birthday = birthday
+        self.__name = name.copy()
+        self.__birthday = birthday.copy()
         self.__phone = phone
         self.__country = country
         self.__city = city
-        self.__address = address
+        self.__address = address.copy()
 
     def __str__(self):
         return f"ФИО: {list(self.__name.values())}\n" \
@@ -47,12 +45,12 @@ class Human:
     def birthday(self, birthday: Dict[str, str]):
         self.__birthday = birthday.copy()
 
-
-    def get_phone(self):
+    @property
+    def phone(self):
         return self.__phone
 
-
-    def set_phone(self, phone):
+    @phone.setter
+    def phone(self, phone):
         self.__phone = phone
 
     @property
@@ -68,7 +66,7 @@ class Human:
         return self.__city
 
     @city.setter
-    def city(self, city:str):
+    def city(self, city: str):
         self.__city = city
 
     @property
@@ -80,33 +78,8 @@ class Human:
         self.__address = address.copy()
 
 
-
 def execute_application():
-    birthday = {
-        "day": "12",
-        "month": "01",
-        "year": "1234"
-    }
-    name = {
-        "фамилия": "Сушков",
-        "имя": "Артем",
-        "отчество": "Сергеевич"
-    }
-    address = {
-        "улица": "Пушкина",
-        "дом": "1"
-    }
-    man = Human(name, birthday, "464646", "Русь", "Тутаево", address)
-    print(man)
-    birthday["day"] = "99999"
-    print(man)
-
-
-
-
-
-
-
+    pass
 
 
 if __name__ == "__main__":
