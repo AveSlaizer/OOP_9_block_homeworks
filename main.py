@@ -15,20 +15,22 @@ class Human:
 
     def __init__(self, name: Dict[str, str], birthday: Dict[str, str], phone: str,
                  country: str, city: str, address: Dict[str, str]):
-        self.name = name
-        self.birthday = birthday
-        self.phone = phone
-        self.country = country
-        self.city = city
-        self.address = address
+        self.__name = name
+        self.__birthday = birthday
+        self.__phone = phone
+        self.__country = country
+        self.__city = city
+        self.__address = address
 
     def __str__(self):
-        return f"ФИО: {list(self.name.values())}\n" \
-               f"Дата рождения: {list(self.birthday.values())}\n" \
-               f"Номер телефона: {self.phone}\n" \
-               f"Страна: {self.country}\n" \
-               f"Город: {self.city}\n" \
-               f"Адрес: {list(self.address.values())}\n"
+        return f"ФИО: {list(self.__name.values())}\n" \
+               f"Дата рождения: {list(self.__birthday.values())}\n" \
+               f"Номер телефона: {self.__phone}\n" \
+               f"Страна: {self.__country}\n" \
+               f"Город: {self.__city}\n" \
+               f"Адрес: {list(self.__address.values())}\n"
+
+
 
 def execute_application():
     pass
