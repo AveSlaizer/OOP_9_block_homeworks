@@ -20,6 +20,15 @@ class Car:
     color: str
     price: float
 
+    def __init__(self, car_brand: str, model: str, year: int,
+                 engine_volume: float, color: str, price: float):
+        self.car_brand = car_brand
+        self.model = model
+        self.year = year
+        self.engine_volume = engine_volume
+        self.color = color
+        self.price = price
+
 
 def execute_application():
     pass
