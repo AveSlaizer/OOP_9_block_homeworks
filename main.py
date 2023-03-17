@@ -11,6 +11,16 @@
 """
 
 
+# Задание 1
+class Car:
+    car_brand: str
+    model: str
+    year: int
+    engine_volume: float
+    color: str
+    price: float
+
+
 def execute_application():
     pass
 
