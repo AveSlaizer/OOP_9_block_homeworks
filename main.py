@@ -20,10 +20,10 @@ class Human:
     phone: str
     country: str
     city: str
-    address: str
+    address: Dict[str, str]
 
     def __init__(self, name: Dict[str, str], birthday: Dict[str, str], phone: str,
-                 country: str, city: str, address: str):
+                 country: str, city: str, address: Dict[str, str]):
         self.name = name
         self.birthday = birthday
         self.phone = phone
@@ -37,7 +37,7 @@ class Human:
                f"Номер телефона: {self.phone}\n" \
                f"Страна: {self.country}\n" \
                f"Город: {self.city}\n" \
-               f"Адрес: {self.address}\n"
+               f"Адрес: {list(self.address.values())}\n"
 
 
 # Задание 2
@@ -73,7 +73,7 @@ def execute_application():
     phone = "+79201234567"
     country = "Российская Федерация"
     city = "Ярославль"
-    address = "ул. Пушкина д. 2 кв. 1098"
+    address = {"страна": "Российская федерация", "город": "Ярославль", "улица": "Пушкина", "дом": "2", "кв": "1098"}
 
     man = Human(name, birthday, phone, country, city, address)
     print(man)
