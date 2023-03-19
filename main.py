@@ -25,6 +25,42 @@ class Book:
                f"Жанр: {self.__genre}\n" \
                f"Цена: {self.__price}\n"
 
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name: str):
+        self.__name = name
+
+    def get_author(self):
+        return self.__author
+
+    def set_author(self, author: str):
+        self.__author = author
+
+    def get_year(self):
+        return self.__year
+
+    def set_year(self, year: str):
+        self.__year = year
+
+    def get_publisher(self):
+        return self.__publisher
+
+    def set_publisher(self, publisher: str):
+        self.__publisher = publisher
+
+    def get_genre(self):
+        return self.__genre
+
+    def set_genre(self, genre: str):
+        self.__genre = genre
+
+    def get_price(self):
+        return self.__price
+
+    def set_price(self, price: float):
+        self.__price = price
+
 
 def execute_application():
     pass
