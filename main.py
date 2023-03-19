@@ -12,20 +12,20 @@ class Car:
 
     def __init__(self, brand: str, model: str, year: int,
                  engine_volume: float, color: str, price: float):
-        self.brand = brand
-        self.model = model
-        self.year = year
-        self.engine_volume = engine_volume
-        self.color = color
-        self.price = price
+        self.__brand = brand
+        self.__model = model
+        self.__year = year
+        self.__engine_volume = engine_volume
+        self.__color = color
+        self.__price = price
 
     def __str__(self):
-        return f"Марка: {self.brand}\n" \
-               f"Модель: {self.model}\n" \
-               f"Год выпуска: {self.year}\n" \
-               f"Объем двигателя: {self.engine_volume}\n" \
-               f"Цвет: {self.color}\n" \
-               f"Цена: {self.price}\n"
+        return f"Марка: {self.__brand}\n" \
+               f"Модель: {self.__model}\n" \
+               f"Год выпуска: {self.__year}\n" \
+               f"Объем двигателя: {self.__engine_volume}\n" \
+               f"Цвет: {self.__color}\n" \
+               f"Цена: {self.__price}\n"
 
 
 def execute_application():
