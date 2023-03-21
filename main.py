@@ -1,66 +1,81 @@
+from typing import Dict
+
 """
-Задание 2.
-Реализуйте класс «Книга». Необходимо хранить в полях класса:
-название книги, год выпуска, издателя, жанр, автора, цену. Реализуйте
-конструктор по умолчанию и метод для вывода данных. Реализуйте доступ к
-отдельным полям класса через методы класса (геттеры и сеттеры).
+Задание 1.
+Реализуйте класс «Человек». Необходимо хранить в полях класса: ФИО,
+дату рождения, контактный телефон, город, страну, домашний адрес.
+Реализуйте конструктор по умолчанию и метод для вывода данных.
+Реализуйте доступ к отдельным полям класса через методы класса (геттеры
+и сеттеры).
 """
 
 
-class Book:
+class Human:
 
-    def __init__(self, name: str, author: str = None, year: str = None,
-                 publisher: str = None, genre: str = None, price: float = None):
-        self.__name = name
-        self.__author = author
-        self.__year = year
-        self.__publisher = publisher
-        self.__genre = genre
-        self.__price = price
+    def __init__(self, name: Dict[str, str], birthday: Dict[str, str] = None, phone: str  = None,
+                 country: str  = None, city: str  = None, address: Dict[str, str]  = None):
+        self.__name = name.copy()
+        self.__birthday = birthday.copy()
+        self.__phone = phone
+        self.__country = country
+        self.__city = city
+        self.__address = address.copy()
 
     def __str__(self):
-        return f"Название: {self.__name}\n" \
-               f"Автор: {self.__author}\n" \
-               f"Год издания: {self.__year}\n" \
-               f"Издатель: {self.__publisher}\n" \
-               f"Жанр: {self.__genre}\n" \
-               f"Цена: {self.__price}\n"
+        return f"ФИО: {list(self.__name.values())}\n" \
+               f"Дата рождения: {list(self.__birthday.values())}\n" \
+               f"Номер телефона: {self.__phone}\n" \
+               f"Страна: {self.__country}\n" \
+               f"Город: {self.__city}\n" \
+               f"Адрес: {list(self.__address.values())}\n"
 
-    def get_name(self):
+    @property
+    def name(self):
         return self.__name
 
-    def set_name(self, name: str):
-        self.__name = name
+    @name.setter
+    def name(self, name: Dict[str, str]):
+        self.__name = name.copy()
 
-    def get_author(self):
-        return self.__author
+    @property
+    def birthday(self):
+        return self.__birthday
 
-    def set_author(self, author: str):
-        self.__author = author
+    @birthday.setter
+    def birthday(self, birthday: Dict[str, str]):
+        self.__birthday = birthday.copy()
 
-    def get_year(self):
-        return self.__year
+    @property
+    def phone(self):
+        return self.__phone
 
-    def set_year(self, year: str):
-        self.__year = year
+    @phone.setter
+    def phone(self, phone):
+        self.__phone = phone
 
-    def get_publisher(self):
-        return self.__publisher
+    @property
+    def country(self):
+        return self.__country
 
-    def set_publisher(self, publisher: str):
-        self.__publisher = publisher
+    @country.setter
+    def country(self, country: str):
+        self.__country = country
 
-    def get_genre(self):
-        return self.__genre
+    @property
+    def city(self):
+        return self.__city
 
-    def set_genre(self, genre: str):
-        self.__genre = genre
+    @city.setter
+    def city(self, city: str):
+        self.__city = city
 
-    def get_price(self):
-        return self.__price
+    @property
+    def address(self):
+        return self.__address
 
-    def set_price(self, price: float):
-        self.__price = price
+    @address.setter
+    def address(self, address: Dict[str, str]):
+        self.__address = address.copy()
 
 
 def execute_application():
