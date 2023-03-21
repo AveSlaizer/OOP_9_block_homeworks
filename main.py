@@ -10,8 +10,8 @@
 
 class Car:
 
-    def __init__(self, brand: str, model: str, year: int,
-                 engine_volume: float, color: str, price: float):
+    def __init__(self, brand: str, model: str, year: int = None,
+                 engine_volume: float = None, color: str = None, price: float = None):
         self.__brand = brand
         self.__model = model
         self.__year = year
