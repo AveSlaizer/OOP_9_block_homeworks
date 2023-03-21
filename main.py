@@ -12,8 +12,8 @@ from typing import Dict
 
 class Human:
 
-    def __init__(self, name: Dict[str, str], birthday: Dict[str, str], phone: str,
-                 country: str, city: str, address: Dict[str, str]):
+    def __init__(self, name: Dict[str, str], birthday: Dict[str, str] = None, phone: str  = None,
+                 country: str  = None, city: str  = None, address: Dict[str, str]  = None):
         self.__name = name.copy()
         self.__birthday = birthday.copy()
         self.__phone = phone
