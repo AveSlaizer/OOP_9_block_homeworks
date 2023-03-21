@@ -1,35 +1,34 @@
+from typing import Dict
+
+
 """
-Задание 1.
-Реализуйте класс «Автомобиль». Необходимо хранить в полях класса:
-название модели, год выпуска, производителя, объем двигателя, цвет машины,
-цену. Реализуйте конструктор по умолчанию и метод для вывода данных.
+Задание 2.
+Реализуйте класс «Стадион». Необходимо хранить в полях класса:
+название стадиона, дату открытия, страну, город, вместимость. Реализуйте
+конструктор по умолчанию и метод для вывода данных.
 """
 
+class Stadium:
+    name: str
+    date_of_opening: Dict[str, str]
+    country: str
+    city: str
+    capacity: int
 
-class Car:
-    brand: str
-    model: str
-    year: int
-    engine_volume: float
-    color: str
-    price: float
-
-    def __init__(self, brand: str, model: str, year: int = None,
-                 engine_volume: float = None, color: str = None, price: float = None):
-        self.brand = brand
-        self.model = model
-        self.year = year
-        self.engine_volume = engine_volume
-        self.color = color
-        self.price = price
+    def __init__(self, name: str, date: Dict[str, str] = None,
+                 country: str = None, city: str = None, capacity: int = None):
+        self.name = name
+        self.date_of_opening = date
+        self.country = country
+        self.city = city
+        self.capacity = capacity
 
     def __str__(self):
-        return f"Марка: {self.brand}\n" \
-               f"Модель: {self.model}\n" \
-               f"Год выпуска: {self.year}\n" \
-               f"Объем двигателя: {self.engine_volume}\n" \
-               f"Цвет: {self.color}\n" \
-               f"Цена: {self.price}\n"
+        return f"Название: {self.name}\n" \
+               f"Дата открытия: {list(self.date_of_opening.values())}\n" \
+               f"Страна: {self.country}\n" \
+               f"Город: {self.city}\n" \
+               f"Вместимость: {self.capacity}\n"
 
 
 def execute_application():
