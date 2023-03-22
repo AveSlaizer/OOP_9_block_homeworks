@@ -22,8 +22,8 @@ class Human:
     city: str
     address: Dict[str, str]
 
-    def __init__(self, name: Dict[str, str], birthday: Dict[str, str], phone: str,
-                 country: str, city: str, address: Dict[str, str]):
+    def __init__(self, name: Dict[str, str], birthday: Dict[str, str] = None, phone: str = None,
+                 country: str = None, city: str = None, address: Dict[str, str] = None):
         self.name = name.copy()
         self.birthday = birthday.copy()
         self.phone = phone
@@ -49,7 +49,8 @@ class Book:
     genre: str
     price: float
 
-    def __init__(self, name: str, author: str, year: str, publisher: str, genre: str, price: float):
+    def __init__(self, name: str, author: str = None, year: str = None,
+                 publisher: str = None, genre: str = None, price: float = None):
         self.name = name
         self.author = author
         self.year = year
