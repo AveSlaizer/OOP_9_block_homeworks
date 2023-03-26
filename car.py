@@ -17,6 +17,23 @@ class Car:
                f"Цвет: {self.__color}\n" \
                f"Цена: {self.__price}\n"
 
+    @classmethod
+    def init_from_file(cls, path: str):
+        """
+        Возвращает объект класса Car из файла
+        :param path (str): Путь и название файла с расширением
+        :return:
+                объект класса Car
+        """
+        with open(path, "r", encoding="UTF-8") as file:
+            brand = file.readline().rstrip()
+            model = file.readline().rstrip()
+            year = int(file.readline().rstrip())
+            engine_volume = float(file.readline().rstrip())
+            color = file.readline().rstrip()
+            price = float(file.readline().rstrip())
+            return cls(brand, model, year, engine_volume, color, price)
+
     @property
     def brand(self):
         return self.__brand
