@@ -1,3 +1,6 @@
+from typing import Dict
+
+
 class Stadium:
 
     def __init__(self, name: str, date: Dict[str, str] = None,
@@ -14,3 +17,43 @@ class Stadium:
                f"Страна: {self.__country}\n" \
                f"Город: {self.__city}\n" \
                f"Вместимость: {self.__capacity}\n"
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name: str):
+        self.__name = name
+
+    @property
+    def date(self):
+        return self.__date_of_opening
+
+    @date.setter
+    def date(self, date: Dict[str, str]):
+        self.__date_of_opening = date
+
+    @property
+    def country(self):
+        return self.__country
+
+    @country.setter
+    def country(self, country: str):
+        self.__country = country
+
+    @property
+    def city(self):
+        return self.__city
+
+    @city.setter
+    def city(self, city: str):
+        self.__city = city
+
+    @property
+    def capacity(self):
+        return self.__capacity
+
+    @capacity.setter
+    def capacity(self, capacity: float):
+        self.__capacity = capacity
