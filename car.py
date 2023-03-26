@@ -16,3 +16,51 @@ class Car:
                f"Объем двигателя: {self.__engine_volume}\n" \
                f"Цвет: {self.__color}\n" \
                f"Цена: {self.__price}\n"
+
+    @property
+    def brand(self):
+        return self.__brand
+
+    @brand.setter
+    def brand(self, brand: str):
+        self.__brand = brand
+
+    @property
+    def model(self):
+        return self.__model
+
+    @model.setter
+    def model(self, model: str):
+        self.__model = model
+
+    @property
+    def year(self):
+        return self.__year
+
+    @year.setter
+    def year(self, year: int):
+        self.__year = year
+
+    @property
+    def engine_volume(self):
+        return self.__engine_volume
+
+    @engine_volume.setter
+    def engine_volume(self, engine_volume: float):
+        self.__engine_volume = engine_volume
+
+    @property
+    def color(self):
+        return self.__color
+
+    @color.setter
+    def color(self, color: str):
+        self.__color = color
+
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, price: float):
+        self.__price = price
