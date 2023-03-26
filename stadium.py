@@ -35,6 +35,24 @@ class Stadium:
             capacity = int(file.readline().rstrip())
             return cls(name, date, country, city, capacity)
 
+    @staticmethod
+    def read_from_file(path: str) -> tuple[str, Dict[str, str], str, str, int]:
+        """
+        Возвращает кортеж с данными считанными из файла
+
+        :param path (str): Путь и название файла с расширением
+        :return:
+                Tuple(str, str, int, float, str, float): Кортеж с данными
+        """
+        with open(path, "r", encoding="UTF-8") as file:
+            name = file.readline().rstrip()
+            temp = file.readline().rstrip().split(".")
+            date = {"день": temp[0], "месяц": temp[1], "год": temp[2]}
+            country = file.readline().rstrip()
+            city = file.readline().rstrip()
+            capacity = int(file.readline().rstrip())
+            return name, date, country, city, capacity
+
     @property
     def name(self):
         return self.__name
