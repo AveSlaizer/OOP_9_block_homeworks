@@ -34,6 +34,24 @@ class Car:
             price = float(file.readline().rstrip())
             return cls(brand, model, year, engine_volume, color, price)
 
+    @staticmethod
+    def read_from_file(path: str) -> tuple[str, str, int, float, str, float]:
+        """
+        Возвращает кортеж с данными считанными из файла
+
+        :param path (str): Путь и название файла с расширением
+        :return:
+                Tuple(str, str, int, float, str, float): Кортеж с данными
+        """
+        with open(path, "r", encoding="UTF-8") as file:
+            brand = file.readline().rstrip()
+            model = file.readline().rstrip()
+            year = int(file.readline().rstrip())
+            engine_volume = float(file.readline().rstrip())
+            color = file.readline().rstrip()
+            price = float(file.readline().rstrip())
+            return brand, model, year, engine_volume, color, price
+
     @property
     def brand(self):
         return self.__brand
