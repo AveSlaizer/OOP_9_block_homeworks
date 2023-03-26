@@ -1,3 +1,6 @@
+from typing import Tuple
+
+
 class Book:
 
     def __init__(self, name: str, author: str = None, year: str = None,
@@ -16,6 +19,24 @@ class Book:
                f"Издатель: {self.__publisher}\n" \
                f"Жанр: {self.__genre}\n" \
                f"Цена: {self.__price}\n"
+
+    @classmethod
+    def init_from_file(cls, path: str):
+        """
+        Возвращает объект класса Book из файла
+
+        :param path (str): Путь и название файла с расширением
+        :return:
+                объект класса Book
+        """
+        with open(path, "r", encoding="UTF-8") as file:
+            name = file.readline().rstrip()
+            author = file.readline().rstrip()
+            year = file.readline().rstrip()
+            publisher = file.readline().rstrip()
+            genre = file.readline().rstrip()
+            price = float(file.readline().rstrip())
+            return cls(name, author, year, publisher, genre, price)
 
     @property
     def name(self):
