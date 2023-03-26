@@ -18,6 +18,23 @@ class Stadium:
                f"Город: {self.__city}\n" \
                f"Вместимость: {self.__capacity}\n"
 
+    @classmethod
+    def init_from_file(cls, path: str):
+        """
+        Возвращает объект класса Stadium из файла
+        :param path (str): Путь и название файла с расширением
+        :return:
+                объект класса Stadium
+        """
+        with open(path, "r", encoding="UTF-8") as file:
+            name = file.readline().rstrip()
+            temp = file.readline().rstrip().split(".")
+            date = {"день": temp[0], "месяц": temp[1], "год": temp[2]}
+            country = file.readline().rstrip()
+            city = file.readline().rstrip()
+            capacity = int(file.readline().rstrip())
+            return cls(name, date, country, city, capacity)
+
     @property
     def name(self):
         return self.__name
