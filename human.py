@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 
 
 class Human:
@@ -21,7 +21,7 @@ class Human:
                f"Адрес: {list(self.address.values())}\n"
 
 
-    #строка в файле имеет вид:
+    #Файл состоит из строк, имеющих вид:
     #Иванов_Иван_Иванович 01_01_1999 +79091112233 Россия Ярославль Пушкина_5_97\n
     @classmethod
     def init_from_str(cls, a_string: str):
@@ -44,6 +44,21 @@ class Human:
         address = {"страна": country, "город": city, "улица": temp_address[0],
                    "номер дома": temp_address[1], "квартира": temp_address[2]}
         return cls(name, birthday, phone, country, city, address)
+
+    @staticmethod
+    def create_human_list(path: str) -> List[object]:
+        """
+        Возвращает список объектов класса Human, считывая данные из файла.
+
+        :param path (str): Путь и название файла с расширением
+        :return:
+                result (List[object]): Список объектов
+        """
+        result = []
+        with open(path, "r", encoding="UTF-8") as file:
+            for line in file:
+                result.append(Human.init_from_str(line))
+        return result
 
 
     @property
