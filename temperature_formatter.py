@@ -11,3 +11,13 @@ class TemperatureFormatter:
         """
         return qty * 1.8 + 32
 
+    @staticmethod
+    def fahrenheit_to_celsius(qty: float) -> float:
+        """
+        Рассчитывает градусы Цельсия, из полученных из градусов Фаренгейта
+
+        :param qty (float): Градусы Фаренгейта
+        :return:
+                float: градусы Цельсия
+        """
+        return (qty -32) / 1.8
