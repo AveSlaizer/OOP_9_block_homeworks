@@ -10,3 +10,15 @@ class UnitConverter:
                 float: Мили
         """
         return kilometers * 0.62137
+
+    @staticmethod
+    def miles_to_kilometers(miles: float) -> float:
+        """
+        Преобразует мили в километры
+
+        :param miles (float): Мили
+        :return:
+                float: Километры
+        """
+        return miles * 1.609344
+
