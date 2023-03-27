@@ -9,7 +9,7 @@ class UnitConverter:
         :return:
                 float: Мили
         """
-        return kilometers * 0.62137
+        return kilometers * 0.6213
 
     @staticmethod
     def miles_to_kilometers(miles: float) -> float:
@@ -20,10 +20,10 @@ class UnitConverter:
         :return:
                 float: Километры
         """
-        return miles * 1.609344
+        return miles * 1.6093
 
     @staticmethod
-    def kilogram_to_pounds(kg: float) -> float:
+    def kilograms_to_pounds(kg: float) -> float:
         """
         Преобразует килограммы в фунты
 
@@ -32,4 +32,15 @@ class UnitConverter:
                 float: Фунты
         """
         return kg * 2.2
+
+    @staticmethod
+    def pounds_to_kilograms(pounds: float) -> float:
+        """
+        Преобразует фунты в килограммы
+
+        :param pounds (float): Фунты
+        :return:
+                float: Килограммы
+        """
+        return pounds * 0.4535
 
