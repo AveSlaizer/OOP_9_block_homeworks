@@ -22,3 +22,14 @@ class UnitConverter:
         """
         return miles * 1.609344
 
+    @staticmethod
+    def kilogram_to_pounds(kg: float) -> float:
+        """
+        Преобразует килограммы в фунты
+
+        :param kg (float): Килограммы
+        :return:
+                float: Фунты
+        """
+        return kg * 2.2
+
