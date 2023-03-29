@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 
 
 class Passport:
@@ -38,6 +38,22 @@ class Passport:
               f"Выдано в: {self.__issued_at}\n"
               f"Серия: {self.__series}\n"
               f"Номер: {self.__number}")
+
+
+class ForeignPassport(Passport):
+
+    def __init__(self, name: Dict[str, str] = None, gender: str = None, date_of_birthday: Dict[str, str] = None,
+                 place_of_birth: str = None, citizenship: str = None, date_of_issue: Dict[str, str] = None,
+                 expiration_date: Dict[str, str] = None, issued_at: str = None, series: str = None, number: str = None,
+                 visas: List[object] = None):
+        super.__init__(name, gender, date_of_birthday, place_of_birth)
+        self.__citizenship = citizenship
+        self.__date_of_issue = date_of_issue
+        self.__expiration_date = expiration_date
+        self.__issued_at = issued_at
+        self.__series = series
+        self.__number = number
+        self.__visas = visas
 
 
 def execute_application():
