@@ -64,6 +64,15 @@ class ForeignPassport(Passport):
                f"Серия: {self.__series}\n" \
                f"Номер: {self.__number}"
 
+    def info(self):
+        super().info()
+        print(f"Гражданство: {self.__citizenship}\n"
+              f"Дата выдачи: {self.__date_of_issue}\n"
+              f"Дата истечения: {self.__expiration_date}\n"
+              f"Выдано в: {self.__issued_at}\n"
+              f"Серия: {self.__series}\n"
+              f"Номер: {self.__number}")
+
 
 def execute_application():
     name = {"имя": "Артем", "Фамилия": "Сушков", "Отчество": "Сергеевич"}
