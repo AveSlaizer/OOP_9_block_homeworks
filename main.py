@@ -16,25 +16,39 @@ class Passport:
         self.__series = series
         self.__number = number
 
+
+    def __dict__(self):
+        return {
+            "ФИО": {self.__name},
+            "Пол": {self.__gender},
+            "Дата рождения": {self.__date_of_birthday},
+            "Место рождения": {self.__place_of_birth},
+            "Адрес": {self.__address},
+            "Дата выдачи": {self.__date_of_issue},
+            "Выдано в": {self.__issued_at},
+            "Серия": {self.__series},
+            "Номер": {self.__number},
+        }
+
     def __str__(self):
-        return f"\nФИО: {list(self.__name.values())}\n" \
+        return f"\nФИО: {self.__name}\n" \
                f"Пол: {self.__gender}\n" \
-               f"Дата рождения: {list(self.__date_of_birthday.values())}\n" \
+               f"Дата рождения: {self.__date_of_birthday}\n" \
                f"Место рождения: {self.__place_of_birth}\n" \
-               f"Адрес: {list(self.__address.values())}\n" \
-               f"Дата выдачи: {list(self.__date_of_issue.values())}\n" \
+               f"Адрес: {self.__address}\n" \
+               f"Дата выдачи: {self.__date_of_issue}\n" \
                f"Выдано в: {self.__issued_at}\n" \
                f"Серия: {self.__series}\n" \
                f"Номер: {self.__number}"
 
     def info(self):
         print(f"\nКласс: {self.__class__.__name__}\n"
-              f"ФИО: {list(self.__name.values())}\n"
+              f"ФИО: {self.__name}\n"
               f"Пол: {self.__gender}\n"
-              f"Дата рождения: {list(self.__date_of_birthday.values())}\n"
+              f"Дата рождения: {self.__date_of_birthday}\n"
               f"Место рождения: {self.__place_of_birth}\n"
-              f"Адрес: {list(self.__address.values())}\n"
-              f"Дата выдачи: {list(self.__date_of_issue.values())}\n"
+              f"Адрес: {self.__address}\n"
+              f"Дата выдачи: {self.__date_of_issue}\n"
               f"Выдано в: {self.__issued_at}\n"
               f"Серия: {self.__series}\n"
               f"Номер: {self.__number}")
@@ -88,9 +102,26 @@ def execute_application():
     passport = Passport(name, gender, date_of_birthday, place_of_birth,
                         address, date_of_issue, issued_at, series, number)
 
-    print(passport)
+    print(passport.__dict__)
     passport.info()
 
+    name = {"имя": "Вася", "Фамилия": "Пупкин", "Отчество": "Сергеевич"}
+    gender = "м"
+    date_of_birthday = {"день": "21", "месяц": "май", "год": "1989"}
+    place_of_birth = "г. Иваново"
+    citizenship = "Россия"
+    date_of_issue = {"день": "3", "месяц": "март", "год": "2005"}
+    expiration_date = {"день": "3", "месяц": "март", "год": "2015"}
+    issued_at = "МСО 123"
+    series = "f097"
+    number = "09876555513"
+
+    for_passport = ForeignPassport(name, gender, date_of_birthday, place_of_birth,
+                                   citizenship, date_of_issue, expiration_date, issued_at, series, number)
+
+    print("--------------------")
+    print(for_passport)
+    for_passport.info()
 
 if __name__ == "__main__":
     execute_application()
