@@ -16,20 +16,6 @@ class Passport:
         self.__series = series
         self.__number = number
 
-
-    def __dict__(self):
-        return {
-            "ФИО": {self.__name},
-            "Пол": {self.__gender},
-            "Дата рождения": {self.__date_of_birthday},
-            "Место рождения": {self.__place_of_birth},
-            "Адрес": {self.__address},
-            "Дата выдачи": {self.__date_of_issue},
-            "Выдано в": {self.__issued_at},
-            "Серия": {self.__series},
-            "Номер": {self.__number},
-        }
-
     def __str__(self):
         return f"\nФИО: {self.__name}\n" \
                f"Пол: {self.__gender}\n" \
@@ -69,14 +55,6 @@ class ForeignPassport(Passport):
         self.__number = number
         self.__visas = visas
 
-    def __str__(self):
-        super().__str__()
-        return f"Гражданство: {self.__citizenship}\n" \
-               f"Дата выдачи: {self.__date_of_issue}\n" \
-               f"Дата истечения: {self.__expiration_date}\n" \
-               f"Выдано в: {self.__issued_at}\n" \
-               f"Серия: {self.__series}\n" \
-               f"Номер: {self.__number}"
 
     def info(self):
         super().info()
@@ -86,6 +64,7 @@ class ForeignPassport(Passport):
               f"Выдано в: {self.__issued_at}\n"
               f"Серия: {self.__series}\n"
               f"Номер: {self.__number}")
+
 
 
 def execute_application():
@@ -102,7 +81,6 @@ def execute_application():
     passport = Passport(name, gender, date_of_birthday, place_of_birth,
                         address, date_of_issue, issued_at, series, number)
 
-    print(passport.__dict__)
     passport.info()
 
     name = {"имя": "Вася", "Фамилия": "Пупкин", "Отчество": "Сергеевич"}
@@ -120,7 +98,6 @@ def execute_application():
                                    citizenship, date_of_issue, expiration_date, issued_at, series, number)
 
     print("--------------------")
-    print(for_passport)
     for_passport.info()
 
 if __name__ == "__main__":
