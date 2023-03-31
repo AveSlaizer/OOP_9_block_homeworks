@@ -9,12 +9,15 @@
 
 class Device:
 
-    def __init__(self, voltage: str, brand: str, kind: str):
-        self.__voltage = voltage
+    def __init__(self, brand: str, kind: str):
         self.__brand = brand
         self.__kind = kind
 
 
+    def info(self):
+        print(f"\nКласс: {self.__class__.__name__}\n"
+              f"Брэнд: {self.__brand}\n"
+              f"Тип техники: {self.__kind}\n")
 
 def execute_application():
     pass
