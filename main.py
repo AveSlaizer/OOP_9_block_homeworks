@@ -33,6 +33,22 @@ class CoffeeMachine(Device):
               f"Модель: {self.__model}\n"
               f"Потребляемое напряжение: {self.__voltage}")
 
+
+class Blender(Device):
+
+    def __init__(self, brand: str, kind: str, sub_type: str, model: str, voltage: str):
+        super().__init__(brand, kind)
+        self.__sub_type = sub_type
+        self.__model = model
+        self.__voltage = voltage
+
+    def info(self):
+        super().info()
+        print(f"Подвид: {self.__sub_type}\n"
+              f"Модель: {self.__model}\n"
+              f"Потребляемое напряжение: {self.__voltage}")
+
+
 def execute_application():
     pass
 
