@@ -4,48 +4,32 @@ from typing import Dict, List
 class Passport:
 
     def __init__(self, name: Dict[str, str] = None, gender: str = None, date_of_birthday: Dict[str, str] = None,
-                 place_of_birth: str = None, address: Dict[str, str] = None, date_of_issue: Dict[str, str] = None,
-                 issued_at: str = None, series: str = None, number: str = None):
+                 place_of_birth: str = None):
         self.__name = name
         self.__gender = gender
         self.__date_of_birthday = date_of_birthday
         self.__place_of_birth = place_of_birth
-        self.__address = address
-        self.__date_of_issue = date_of_issue
-        self.__issued_at = issued_at
-        self.__series = series
-        self.__number = number
+
 
     def __str__(self):
         return f"\nФИО: {self.__name}\n" \
                f"Пол: {self.__gender}\n" \
                f"Дата рождения: {self.__date_of_birthday}\n" \
-               f"Место рождения: {self.__place_of_birth}\n" \
-               f"Адрес: {self.__address}\n" \
-               f"Дата выдачи: {self.__date_of_issue}\n" \
-               f"Выдано в: {self.__issued_at}\n" \
-               f"Серия: {self.__series}\n" \
-               f"Номер: {self.__number}"
+               f"Место рождения: {self.__place_of_birth}\n"
 
     def info(self):
         print(f"\nКласс: {self.__class__.__name__}\n"
               f"ФИО: {self.__name}\n"
               f"Пол: {self.__gender}\n"
               f"Дата рождения: {self.__date_of_birthday}\n"
-              f"Место рождения: {self.__place_of_birth}\n"
-              f"Адрес: {self.__address}\n"
-              f"Дата выдачи: {self.__date_of_issue}\n"
-              f"Выдано в: {self.__issued_at}\n"
-              f"Серия: {self.__series}\n"
-              f"Номер: {self.__number}")
+              f"Место рождения: {self.__place_of_birth}")
 
 
 class ForeignPassport(Passport):
 
     def __init__(self, name: Dict[str, str] = None, gender: str = None, date_of_birthday: Dict[str, str] = None,
                  place_of_birth: str = None, citizenship: str = None, date_of_issue: Dict[str, str] = None,
-                 expiration_date: Dict[str, str] = None, issued_at: str = None, series: str = None, number: str = None,
-                 visas: List[object] = None):
+                 expiration_date: Dict[str, str] = None, issued_at: str = None, series: str = None, number: str = None):
         super().__init__(name, gender, date_of_birthday, place_of_birth)
         self.__citizenship = citizenship
         self.__date_of_issue = date_of_issue
@@ -53,7 +37,6 @@ class ForeignPassport(Passport):
         self.__issued_at = issued_at
         self.__series = series
         self.__number = number
-        self.__visas = visas
 
 
     def info(self):
@@ -72,14 +55,9 @@ def execute_application():
     gender = "м"
     date_of_birthday = {"день": "11", "месяц": "апрель", "год": "1988"}
     place_of_birth = "г. Ярославль"
-    address = {"улица": "Пушкина", "дом": "3"}
-    date_of_issue = {"день": "30", "месяц": "апрель", "год": "2000"}
-    issued_at = "Ярославское РОВД"
-    series = "1234"
-    number = "123456789"
 
-    passport = Passport(name, gender, date_of_birthday, place_of_birth,
-                        address, date_of_issue, issued_at, series, number)
+
+    passport = Passport(name, gender, date_of_birthday, place_of_birth)
 
     passport.info()
 
