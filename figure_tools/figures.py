@@ -55,4 +55,24 @@ class Circle(Shape, FigureFileManagement):
 
 
 class Ellipse(Shape, FigureFileManagement):
-    pass
+
+    def __init__(self, x: int = None, y: int = None, width : float = None, height: float = None):
+        super().__init__(x, y)
+        self.__width = width
+        self.__height = height
+
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, width: float):
+        self.__width = width
+
+    @property
+    def height(self):
+        return self.__height
+
+    @height.setter
+    def height(self, height: float):
+        self.__height = height
