@@ -20,6 +20,7 @@ Ellipse — эллипс с заданными координатами верх
 
 def execute_application():
     shape = Shape(1, 2)
+    print(shape.__dict__)
 
 
 if __name__ == "__main__":

@@ -4,20 +4,30 @@ from .file_management import FigureFileManagement
 class Shape:
 
     def __init__(self, x: int = None, y: int = None):
-        self.verify_coord(x)
-        self.verify_coord(y)
-
         self.__x = x
         self.__y = y
 
-    @classmethod
-    def verify_coord(cls, coord):
-        if type(coord) != int:
-            raise ValueError("Значение координаты должно быть вещественным числом")
+    @property
+    def x(self):
+        return self.__x
+
+    @x.setter
+    def x(self, x: int):
+        self.__x = x
+
+    @property
+    def y(self):
+        return self.__y
+
+    @y.setter
+    def y(self, y: int):
+        self.__y = y
 
 
 class Square(Shape, FigureFileManagement):
-    pass
+
+    def __int__(self, x: int, y: int, side: int):
+        pass
 
 
 class Circle(Shape, FigureFileManagement):
