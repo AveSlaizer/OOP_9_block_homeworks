@@ -26,8 +26,17 @@ class Shape:
 
 class Square(Shape, FigureFileManagement):
 
-    def __int__(self, x: int, y: int, side: int):
-        pass
+    def __init__(self, x: int = None, y: int = None, side: float = None):
+        super().__init__(x, y)
+        self.__side = side
+
+    @property
+    def side(self):
+        return self.__side
+
+    @side.setter
+    def side(self, side: float):
+        self.__side = side
 
 
 class Circle(Shape, FigureFileManagement):
