@@ -1,3 +1,7 @@
+from figure_tools.figures import Shape, Square, Circle, Ellipse
+from figure_tools.file_management import FigureFileManagement
+
+
 """
 Задание 1.
 Создайте базовый класс Shape для хранения плоских фигур.
@@ -15,7 +19,7 @@ Ellipse — эллипс с заданными координатами верх
 """
 
 def execute_application():
-    pass
+    shape = Shape(1, 2)
 
 
 if __name__ == "__main__":
