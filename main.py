@@ -1,4 +1,4 @@
-from figure_tools.figures import Shape, Square, Circle, Ellipse
+from figure_tools.figures import __Shape, Square, Circle, Ellipse
 from figure_tools.file_management import FigureFileManagement
 
 
@@ -19,8 +19,13 @@ Ellipse — эллипс с заданными координатами верх
 """
 
 def execute_application():
-    shape = Shape(1, 2)
-    print(shape.__dict__)
+    shape = Square(1, 2, 90).info()
+
+    circl = Circle(3, 6, 34).info()
+
+    el = Ellipse(1, 4, 45, 23).info()
+
+
 
 
 if __name__ == "__main__":
