@@ -1,5 +1,6 @@
-from figure_tools.figures import Square, Ellipse, Circle
-from figure_tools.file_management import SquareFileManagement, CircleFileManagement
+from figure_tools.figures import Square, Ellipse, Circle, Rectangle
+from figure_tools.file_management import SquareFileManagement, CircleFileManagement,\
+    RectangleFileManagement
 
 
 """
@@ -28,10 +29,12 @@ def execute_application():
     el = Ellipse(1, 4, 45, 23)
     #el.info()
 
-    path = "12.txt"
-    #CircleFileManagement.write_in_file(circl, path)
+    rect = Rectangle(1, 2, 5, 8)
 
-    asd = CircleFileManagement.read_from_file(path)
+    path = "12.txt"
+    #RectangleFileManagement.write_in_file(rect, path)
+
+    asd = RectangleFileManagement.read_from_file(path)
 
     asd.info()
 

@@ -1,4 +1,4 @@
-from .figures import Square, Circle, Ellipse
+from .figures import Square, Circle, Ellipse, Rectangle
 
 
 class SquareFileManagement:
@@ -71,4 +71,41 @@ class CircleFileManagement:
             circle.y = int(file.readline().strip())
             circle.radius = float(file.readline().strip())
         return circle
+
+
+class RectangleFileManagement:
+
+    @classmethod
+    def write_in_file(cls, figure: Rectangle, path: str) -> None:
+        """
+        Записывает данные фигуры класса Rectangle в .txt файл
+
+        :param figure (Rectangle): экземпляр класса Rectangle
+        :param path (str): Путь до файла и название с расширением
+        """
+        with open(path, "w", encoding="UTF-8") as file:
+            file.write(figure.__class__.__name__ + "\n")
+            for value in figure.__dict__.values():
+                file.write(str(value) + "\n")
+
+
+    @classmethod
+    def read_from_file(cls, path) -> Rectangle:
+        """
+        Возвращает объект с полями заполненныеми данными из считанного файла
+
+        :param path (str): Путь до файла и название с расширением
+        :return:
+                rectangle (Rectangle): экземпляр класса Rectangle
+        """
+        rectangle = Rectangle()
+        with open(path, "r", encoding="UTF-8") as file:
+            class_name = file.readline().strip()
+            if class_name != "Rectangle":
+                raise FileNotFoundError("Не верно выбран файл для чтения.")
+            rectangle.x = int(file.readline().strip())
+            rectangle.y = int(file.readline().strip())
+            rectangle.width = float(file.readline().strip())
+            rectangle.height = float(file.readline().strip())
+        return rectangle
 
