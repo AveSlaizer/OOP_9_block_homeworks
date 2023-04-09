@@ -1,3 +1,6 @@
+from .file_management import FigureFileManagement
+
+
 class __Shape:
 
     def __init__(self, x: int = None, y: int = None):
@@ -24,7 +27,7 @@ class __Shape:
         print(f"Координаты начальной точки: ({self.__x}, {self.__y})")
 
 
-class Square(__Shape):
+class Square(__Shape, FigureFileManagement):
     __NAME = "Квадрат"
 
     def __init__(self, x: int = None, y: int = None, side: float = None):
@@ -42,10 +45,10 @@ class Square(__Shape):
     def info(self):
         print(f"Фигура: {self.__NAME}")
         super().info()
-        print(f"Сторона: {self.__side}")
+        print(f"Сторона: {self.__side}\n")
 
 
-class Circle(__Shape):
+class Circle(__Shape, FigureFileManagement):
     __NAME = "Окружность"
 
     def __init__(self, x: int = None, y: int = None, radius: float = None):
@@ -63,10 +66,10 @@ class Circle(__Shape):
     def info(self):
         print(f"Фигура: {self.__NAME}")
         super().info()
-        print(f"Радиус: {self.__radius}")
+        print(f"Радиус: {self.__radius}\n")
 
 
-class Rectangle(__Shape):
+class Rectangle(__Shape, FigureFileManagement):
     __NAME = "Прямоугольник"
 
     def __init__(self, x: int = None, y: int = None, width: float = None, height: float = None):
@@ -93,10 +96,10 @@ class Rectangle(__Shape):
     def info(self):
         print(f"Фигура: {self.__NAME}")
         super().info()
-        print(f"Стороны: {self.__width} x {self.__height}")
+        print(f"Стороны: {self.__width} x {self.__height}\n")
 
 
-class Ellipse(__Shape):
+class Ellipse(__Shape, FigureFileManagement):
     __NAME = "Эллипс"
 
     def __init__(self, x: int = None, y: int = None, width: float = None, height: float = None):
@@ -123,4 +126,4 @@ class Ellipse(__Shape):
     def info(self):
         print(f"Фигура: {self.__NAME}")
         super().info()
-        print(f"Стороны: {self.__width} x {self.__height}")
+        print(f"Стороны: {self.__width} x {self.__height}\n")

@@ -1,7 +1,4 @@
 from figure_tools.figures import Square, Ellipse, Circle, Rectangle
-from figure_tools.file_management import SquareFileManagement, CircleFileManagement,\
-    RectangleFileManagement, EllipseFileManagement
-
 
 """
 Задание 1.
@@ -19,31 +16,45 @@ Ellipse — эллипс с заданными координатами верх
 в файлы, загружает из файла и отобразите информацию о каждой из фигур.
 """
 
+
 def execute_application():
-    shape = Square(1, 2, 90)
-    #shape.info()
+    print("Фигуры для записи в файлы: \n")
 
-    circl = Circle(3, 6, 34)
-    #circl.info()
+    square = Square(5, 3, 34)
+    square.info()
 
-    el = Ellipse(1, 4, 45, 23)
-    #el.info()
+    circle = Circle(0, 2, 42)
+    circle.info()
 
-    rect = Rectangle(1, 2, 5, 8)
+    ellipse = Ellipse(7, 1, 12, 78.9)
+    ellipse.info()
 
-    path = "12.txt"
-    #EllipseFileManagement.write_in_file(el, path)
+    rectangle = Rectangle(9, 9, 5.6, 23.5)
+    rectangle.info()
 
-    asd = EllipseFileManagement.read_from_file(path)
+    figure_list = [square, circle, ellipse, rectangle]
 
-    asd.info()
+    for num, item in enumerate(figure_list):
+        path = str(num) + "_" + item.__class__.__name__
+        item.write_in_file(path)
 
+    print("Фигуры считанные из файлов:\n")
 
+    path_square = "square.txt"
+    square_from_file = Square.read_from_file(path_square)
+    square_from_file.info()
 
+    path_circle = "circle.txt"
+    circle_from_file = Circle.read_from_file(path_circle)
+    circle_from_file.info()
 
+    path_rectangle = "rectangle.txt"
+    rectangle_from_file = Rectangle.read_from_file(path_rectangle)
+    rectangle_from_file.info()
 
-
-
+    path_ellipse = "ellipse.txt"
+    ellipse_from_file = Ellipse.read_from_file(path_ellipse)
+    ellipse_from_file.info()
 
 
 if __name__ == "__main__":
