@@ -1,5 +1,5 @@
 from figure_tools.figures import Square, Ellipse, Circle
-from figure_tools.file_management import SquareFileManagement
+from figure_tools.file_management import SquareFileManagement, CircleFileManagement
 
 
 """
@@ -29,7 +29,13 @@ def execute_application():
     #el.info()
 
     path = "12.txt"
-    SquareFileManagement.write_in_file(shape, path)
+    #CircleFileManagement.write_in_file(circl, path)
+
+    asd = CircleFileManagement.read_from_file(path)
+
+    asd.info()
+
+
 
 
 
