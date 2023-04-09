@@ -1,5 +1,5 @@
-from figure_tools.figures import __Shape, Square, Circle, Ellipse
-from figure_tools.file_management import FigureFileManagement
+from figure_tools.figures import Square, Ellipse, Circle
+from figure_tools.file_management import SquareFileManagement
 
 
 """
@@ -19,11 +19,20 @@ Ellipse — эллипс с заданными координатами верх
 """
 
 def execute_application():
-    shape = Square(1, 2, 90).info()
+    shape = Square(1, 2, 90)
+    #shape.info()
 
-    circl = Circle(3, 6, 34).info()
+    circl = Circle(3, 6, 34)
+    #circl.info()
 
-    el = Ellipse(1, 4, 45, 23).info()
+    el = Ellipse(1, 4, 45, 23)
+    #el.info()
+
+    path = "12.txt"
+    SquareFileManagement.write_in_file(shape, path)
+
+
+
 
 
 
