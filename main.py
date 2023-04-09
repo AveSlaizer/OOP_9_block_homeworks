@@ -1,6 +1,6 @@
 from figure_tools.figures import Square, Ellipse, Circle, Rectangle
 from figure_tools.file_management import SquareFileManagement, CircleFileManagement,\
-    RectangleFileManagement
+    RectangleFileManagement, EllipseFileManagement
 
 
 """
@@ -32,9 +32,9 @@ def execute_application():
     rect = Rectangle(1, 2, 5, 8)
 
     path = "12.txt"
-    #RectangleFileManagement.write_in_file(rect, path)
+    #EllipseFileManagement.write_in_file(el, path)
 
-    asd = RectangleFileManagement.read_from_file(path)
+    asd = EllipseFileManagement.read_from_file(path)
 
     asd.info()
 

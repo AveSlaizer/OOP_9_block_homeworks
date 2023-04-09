@@ -1,4 +1,4 @@
-from .figures import Square, Circle, Ellipse, Rectangle
+from .figures import Square, Circle, Rectangle, Ellipse
 
 
 class SquareFileManagement:
@@ -108,4 +108,41 @@ class RectangleFileManagement:
             rectangle.width = float(file.readline().strip())
             rectangle.height = float(file.readline().strip())
         return rectangle
+
+
+class EllipseFileManagement:
+
+    @classmethod
+    def write_in_file(cls, figure: Ellipse, path: str) -> None:
+        """
+        Записывает данные фигуры класса Ellipse в .txt файл
+
+        :param figure (Ellipse): экземпляр класса Ellipse
+        :param path (str): Путь до файла и название с расширением
+        """
+        with open(path, "w", encoding="UTF-8") as file:
+            file.write(figure.__class__.__name__ + "\n")
+            for value in figure.__dict__.values():
+                file.write(str(value) + "\n")
+
+
+    @classmethod
+    def read_from_file(cls, path) -> Ellipse:
+        """
+        Возвращает объект с полями заполненныеми данными из считанного файла
+
+        :param path (str): Путь до файла и название с расширением
+        :return:
+                ellipse (Ellipse): экземпляр класса Rectangle
+        """
+        ellipse = Ellipse()
+        with open(path, "r", encoding="UTF-8") as file:
+            class_name = file.readline().strip()
+            if class_name != "Ellipse":
+                raise FileNotFoundError("Не верно выбран файл для чтения.")
+            ellipse.x = int(file.readline().strip())
+            ellipse.y = int(file.readline().strip())
+            ellipse.width = float(file.readline().strip())
+            ellipse.height = float(file.readline().strip())
+        return ellipse
 
