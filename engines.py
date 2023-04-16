@@ -28,3 +28,17 @@ class GasEngine(Engine):
 
 class DieselEngine(Engine):
     pass
+
+
+class ElectricalEngine(Engine):
+    pass
+
+
+# Миксин
+class FailureStatus:
+
+    @staticmethod
+    def print_failure_status(engine: Engine):
+        if engine.error_list:
+            print(f"Коды ошибок: {engine.error_list}")
+        print(engine.get_failure_status())
