@@ -1,4 +1,8 @@
-class Car:
+from engines import EngineFailureStatus
+from gearboxes import TransmissionSpeedStatus
+
+
+class __Car:
 
     def __init__(self, brand: str, model: str, year: str):
         self.__brand = brand
@@ -9,13 +13,13 @@ class Car:
         return f"{self.__brand} {self.__model}, {self.__year} года выпуска"
 
 
-class Sedan(Car):
+class Sedan(__Car, EngineFailureStatus, TransmissionSpeedStatus):
     pass
 
 
-class Hatchback(Car):
+class Hatchback(__Car, EngineFailureStatus, TransmissionSpeedStatus):
     pass
 
 
-class Pickup(Car):
+class Pickup(__Car, EngineFailureStatus, TransmissionSpeedStatus):
     pass
