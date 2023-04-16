@@ -8,3 +8,14 @@ class Car:
     def __str__(self):
         return f"{self.__brand} {self.__model}, {self.__year} года выпуска"
 
+
+class Sedan(Car):
+    pass
+
+
+class Hatchback(Car):
+    pass
+
+
+class Pickup(Car):
+    pass
