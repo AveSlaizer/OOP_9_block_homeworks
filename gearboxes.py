@@ -42,3 +42,13 @@ class Transmission:
             return f"Включена {self.__speed}-я передача"
 
 
+class ManualTransmission(Transmission):
+    pass
+
+
+class AutomaticTransmission(Transmission):
+    pass
+
+
+class RoboticTransmission(Transmission):
+    pass
