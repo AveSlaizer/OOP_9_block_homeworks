@@ -35,7 +35,7 @@ class ElectricalEngine(Engine):
 
 
 # Миксин
-class FailureStatus:
+class EngineFailureStatus:
 
     @staticmethod
     def print_failure_status(engine: Engine):

@@ -52,3 +52,10 @@ class AutomaticTransmission(Transmission):
 
 class RoboticTransmission(Transmission):
     pass
+
+# Миксин
+class TransmissionSpeedStatus:
+
+    @staticmethod
+    def print_speed_status(transmission: Transmission):
+        print(transmission.status())
