@@ -14,6 +14,37 @@ class Flat:
         self.__square = square
         self.__price = price
 
+    def __is_flat(self, other):
+        if not isinstance(other, Flat):
+            raise TypeError(f"Невозможно выполнить сравнение между типом {self.__class__.__name__} "
+                            f"и {other.__class__.__name__}")
+
+    def __hash__(self):
+        return hash((self.__square, self.__price))
+
+    def __eq__(self, other):
+        self.__is_flat(other)
+        return self.__square == other.__square
+
+    def __ne__(self, other):
+        self.__is_flat(other)
+        return self.__square != other.__square
+
+    def __lt__(self, other):
+        self.__is_flat(other)
+        return self.__price < other.__price
+
+    def __gt__(self, other):
+        self.__is_flat(other)
+        return self.__price > other.__price
+
+    def __le__(self, other):
+        self.__is_flat(other)
+        return self.__price <= other.__price
+
+    def __ge__(self, other):
+        self.__is_flat(other)
+        return self.__price >= other.__price
 
 
 
