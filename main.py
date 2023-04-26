@@ -27,13 +27,7 @@ class Device:
 
 
 class CoffeeMachine(Device):
-
-    def __init__(self, brand: str = None, kind: str = None, sub_type: str = None,
-                 model: str = None, voltage: str = None):
-        super().__init__(brand, kind, sub_type, model, voltage)
-
-    def info(self):
-        super().info()
+    pass
 
 
 class Blender(Device):
@@ -41,6 +35,7 @@ class Blender(Device):
 
 
 def execute_application():
+
     brand_2 = "Tefal"
     kind_2 = "Мелкая бытовая техника"
     sub_type_2 = "Капсульная кофемашина"
