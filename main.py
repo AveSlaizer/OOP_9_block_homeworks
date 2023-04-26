@@ -7,7 +7,6 @@
 Сравнение двух квартир по стоимости (операции >, <, <=, >=).
 """
 
-
 class Flat:
 
     def __init__(self, square: float, price: float):
@@ -47,9 +46,12 @@ class Flat:
         return self.__price >= other.__price
 
 
-
 def execute_application():
-    pass
+
+    flat1 = Flat(10, 9000)
+    flat2 = Flat(10, 9500)
+    print(flat1 == flat2)
+    print(flat1 < flat2)
 
 
 if __name__ == "__main__":
