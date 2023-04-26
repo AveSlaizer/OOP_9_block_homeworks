@@ -9,57 +9,38 @@
 
 class Device:
 
-    def __init__(self, brand: str = None, kind: str = None):
+    def __init__(self, brand: str = None, kind: str = None, sub_type: str = None,
+                 model: str = None, voltage: str = None):
         self.__brand = brand
         self.__kind = kind
-
+        self.__sub_type = sub_type
+        self.__model = model
+        self.__voltage = voltage
 
     def info(self):
         print(f"\nКласс: {self.__class__.__name__}\n"
               f"Брэнд: {self.__brand}\n"
-              f"Тип техники: {self.__kind}")
+              f"Тип техники: {self.__kind}\n"
+              f"Подвид: {self.__sub_type}\n"
+              f"Модель: {self.__model}\n"
+              f"Потребляемое напряжение: {self.__voltage}")
+
 
 class CoffeeMachine(Device):
 
     def __init__(self, brand: str = None, kind: str = None, sub_type: str = None,
                  model: str = None, voltage: str = None):
-        super().__init__(brand, kind)
-        self.__sub_type = sub_type
-        self.__model = model
-        self.__voltage = voltage
+        super().__init__(brand, kind, sub_type, model, voltage)
 
     def info(self):
         super().info()
-        print(f"Подвид: {self.__sub_type}\n"
-              f"Модель: {self.__model}\n"
-              f"Потребляемое напряжение: {self.__voltage}")
 
 
 class Blender(Device):
-
-    def __init__(self, brand: str = None, kind: str = None, sub_type: str = None,
-                 model: str = None, voltage: str = None):
-        super().__init__(brand, kind)
-        self.__sub_type = sub_type
-        self.__model = model
-        self.__voltage = voltage
-
-    def info(self):
-        super().info()
-        print(f"Подвид: {self.__sub_type}\n"
-              f"Модель: {self.__model}\n"
-              f"Потребляемое напряжение: {self.__voltage}")
+    pass
 
 
 def execute_application():
-
-    brand_1 = "Redmond"
-    kind_1 = "Крупная бытовая техника"
-
-    device = Device(brand_1, kind_1)
-
-    device.info()
-
     brand_2 = "Tefal"
     kind_2 = "Мелкая бытовая техника"
     sub_type_2 = "Капсульная кофемашина"
