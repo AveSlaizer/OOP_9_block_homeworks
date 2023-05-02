@@ -50,7 +50,12 @@ class Permissions:
 
 
 def execute_application():
-    pass
+
+    auth = GithubAuthentication()
+
+    perm = Permissions(auth)
+
+    perm.get_permissions()
 
 
 
