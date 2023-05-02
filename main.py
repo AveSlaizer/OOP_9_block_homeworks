@@ -29,44 +29,50 @@ TerminalPaymentService не должен поддерживать проведе
 class WedMoneyPayment(ABC):
 
     @abstractmethod
-    def pay_web_money(self):
+    def pay_web_money(self, value):
         pass
 
 
 class CreditCardPayment(ABC):
 
     @abstractmethod
-    def pay_credit_card(self):
+    def pay_credit_card(self, value):
         pass
 
 
 class PhoneNumberPayment(ABC):
 
     @abstractmethod
-    def pay_phone_number(self):
+    def pay_phone_number(self, value):
         pass
 
 
 class InternetPaymentService(WedMoneyPayment, PhoneNumberPayment):
 
-    def pay_web_money(self):
-        # TODO оплата вэбманями
-        pass
+    def pay_web_money(self, value: float):
+        # какая-то реализация
+        print(f"Оплата на сумму \"{value}\" руб. прошла успешно.")
 
-    def pay_phone_number(self):
-        # TODO оплата по номеру телефона
-        pass
+    def pay_phone_number(self, value: float):
+        # какая-то реализация
+        print(f"Оплата на сумму \"{value}\" руб. прошла успешно.")
 
 
 class TerminalPaymentService(CreditCardPayment):
 
-    def pay_credit_card(self):
-        # TODO оплата кредитной картой
-        pass
+    def pay_credit_card(self, value: float):
+        # какая-то реализация
+        print(f"Оплата на сумму \"{value}\" руб. прошла успешно.")
 
 
 def execute_application():
-    pass
+
+    payment1 = InternetPaymentService()
+
+    payment1.pay_web_money(123)
+
+    payment2 = TerminalPaymentService()
+    payment2.pay_credit_card(10003)
 
 
 if __name__ == "__main__":
