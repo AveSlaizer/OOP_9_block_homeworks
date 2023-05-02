@@ -47,20 +47,22 @@ class PhoneNumberPayment(ABC):
         pass
 
 
-class InternetPaymentService(WedMoneyPayment, CreditCardPayment, PhoneNumberPayment):
+class InternetPaymentService(WedMoneyPayment, PhoneNumberPayment):
 
     def pay_web_money(self):
         # TODO оплата вэбманями
-        pass
-
-    def pay_credit_card(self):
-        # TODO оплата кредитной картой
         pass
 
     def pay_phone_number(self):
         # TODO оплата по номеру телефона
         pass
 
+
+class TerminalPaymentService(CreditCardPayment):
+
+    def pay_credit_card(self):
+        # TODO оплата кредитной картой
+        pass
 
 
 def execute_application():
