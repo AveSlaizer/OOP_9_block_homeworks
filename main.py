@@ -32,10 +32,9 @@ class MathematicalFraction:
 
         self.__numerator = abs(numerator)
         self.__denominator = abs(denominator)
-        if numerator * denominator > 0:
-            self.__mark = "+"
-        else:
-            self.__mark = "-"
+
+        if numerator * denominator < 0:
+            self.__numerator *= -1
 
     @property
     def numerator(self):
@@ -45,19 +44,12 @@ class MathematicalFraction:
     def denominator(self):
         return self.__denominator
 
-    @property
-    def mark(self):
-        return self.__mark
-
     def __str__(self):
-        return f"{f'{self.__mark} ' if self.__mark == '-' else ''}{self.__numerator} / {self.__denominator}"
+        return f"{'- ' if self.__numerator < 0 else ''}{abs(self.__numerator)} / {self.__denominator}"
 
 
 def execute_application():
-
-    fract = MathematicalFraction(1, 2)
-
-    print(fract)
+    pass
 
 
 if __name__ == "__main__":
