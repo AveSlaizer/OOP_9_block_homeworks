@@ -50,7 +50,7 @@ class MathematicalFraction:
             self.__numerator = int(self.__numerator / value)
             self.__denominator = int(self.__denominator / value)
 
-    def lead_to_common_denominator(self, other, denominator: bool = True)\
+    def lead_to_common_denominator(self, other, denominator: bool = True) \
             -> Union[tuple[int, int], tuple[int, int, int]]:
         """
         Возвращает кортеж с числителем первой дроби, числителем второй дроби и общий знаменатель дробей.
@@ -66,13 +66,12 @@ class MathematicalFraction:
 
         if denominator:
             value_tuple = (self.__numerator * other.__denominator,
-            other.__numerator * self.__denominator,
-            other.__denominator * self.__denominator)
+                           other.__numerator * self.__denominator,
+                           other.__denominator * self.__denominator)
         else:
             value_tuple = (self.__numerator * other.__denominator,
                            other.__numerator * self.__denominator)
         return value_tuple
-
 
     def __is_math_fraction(self, other):
         if not isinstance(other, MathematicalFraction):
@@ -103,15 +102,33 @@ class MathematicalFraction:
         numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
         return numerator1 != numerator2
 
+    def __lt__(self, other):
+        self.__is_math_fraction(other)
+        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        return numerator1 < numerator2
+
+    def __le__(self, other):
+        self.__is_math_fraction(other)
+        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        return numerator1 <= numerator2
+
+    def __gt__(self, other):
+        self.__is_math_fraction(other)
+        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        return numerator1 > numerator2
+
+    def __ge__(self, other):
+        self.__is_math_fraction(other)
+        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        return numerator1 >= numerator2
+
 
 def execute_application():
-
     fract = MathematicalFraction(1, 2)
     fract1 = MathematicalFraction(2, 4)
     print(fract == fract1)
-    print(fract != fract1)
 
-
+    print(fract, fract1)
 
 
 if __name__ == "__main__":
