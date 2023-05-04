@@ -1,7 +1,6 @@
 from math import pi
 from typing import Union
 
-
 """
 Задание 1.
 Создайте класс Circle (окружность). Для данного класса реализуйте ряд
@@ -11,6 +10,8 @@ from typing import Union
 Пропорциональное изменение размеров окружности, путем изменения
 ее радиуса (операции + - += -=)
 """
+
+
 class InitializationCircleError(Exception):
 
     def __init__(self, text: str):
@@ -93,14 +94,36 @@ class Circle:
                         f"между типом \'{self.__class__.__name__}\' "
                         f"и \'{other.__class__.__name__}\'")
 
+    def __sub__(self, other):
+        if isinstance(other, Union[int, float]):
+            new_radius = self.__radius - other
+            new_circle = Circle(new_radius)
+            if not self.__length is None:
+                new_circle.calc_circumference_length()
+            return new_circle
+        raise TypeError(f"Невозможно выполнить операцию вычитания "
+                        f"между типом \'{self.__class__.__name__}\' "
+                        f"и \'{other.__class__.__name__}\'")
+
+    def __isub__(self, other):
+        if isinstance(other, Union[int, float]):
+            self.__radius = self.__radius - other
+            if self.__radius <= 0:
+                raise InitializationCircleError("Ошибка инициализации окружности. "
+                                                "Радиус не может быть меньше или равен нулю")
+            if not self.__length is None:
+                self.calc_circumference_length()
+            return self
+        raise TypeError(f"Невозможно выполнить операцию вычитания "
+                        f"между типом \'{self.__class__.__name__}\' "
+                        f"и \'{other.__class__.__name__}\'")
 
 
 def execute_application():
-
     circ = Circle(5)
     circ.calc_circumference_length()
     print(circ.__dict__)
-    circ += 5
+    circ -= 1
     print(circ.__dict__)
 
 
