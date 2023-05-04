@@ -121,10 +121,17 @@ class Circle:
 
 def execute_application():
     circ = Circle(5)
-    circ.calc_circumference_length()
+
     print(circ.__dict__)
-    circ -= 1
+    circ += 1
     print(circ.__dict__)
+    circ2 = circ + 2
+    print(circ2.__dict__)
+    try:
+        circ3 = circ + (-6)
+    except InitializationCircleError as e:
+        print(e)
+
 
 
 if __name__ == "__main__":
