@@ -23,21 +23,53 @@ class InitializationFractionError(Exception):
         self.value = value
 
 
+class Nominator:
+
+    @staticmethod
+    def _is_integer(value):
+        if not isinstance(value, int):
+            raise TypeError(f"Не верный тип данных: \'{value.__class__.__name__}\' "
+                            f"ожидался 'int'")
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self.name)
+
+    def __set__(self, instance, value):
+        self._is_integer(value)
+        setattr(instance, self.name, value)
+
+
+class Denominator(Nominator):
+
+    def __set__(self, instance, value):
+        if value == 0:
+            raise InitializationFractionError("Невозможно создать дробь со знаменателем равным", value)
+        super().__set__(instance, value)
+
+
 class MathematicalFraction:
 
+    __numerator = Nominator()
+    __denominator = Denominator()
+
     def __init__(self, numerator: int, denominator: int):
-        if not isinstance(numerator, int):
-            raise InitializationFractionError("Не верный тип данных:", numerator.__class__.__name__)
-        if not isinstance(denominator, int):
-            raise InitializationFractionError("Не верный тип данных:", denominator.__class__.__name__)
-        if denominator == 0:
-            raise InitializationFractionError("Невозможно создать дробь со знаменателем равным", denominator)
+        self.__numerator = numerator
+        self.__denominator = denominator
+        self.__convert_fraction()
 
-        self.__numerator = abs(numerator)
-        self.__denominator = abs(denominator)
+    def __convert_fraction(self):
+        """Конвертирует дробь к единообразному виду. Если дробь отрицательная - то числитель отрицательный,
+        знаменатель положительный."""
+        if self.__numerator * self.__denominator < 0:
+            self.__numerator = -1 * abs(self.__numerator)
+            self.__denominator = abs(self.__denominator)
+        if self.__numerator < 0 and self.__denominator < 0:
+            self.__numerator = abs(self.__numerator)
+            self.__denominator = abs(self.__denominator)
 
-        if numerator * denominator < 0:
-            self.__numerator *= -1
 
     def shorten_fraction(self):
         """
@@ -126,9 +158,9 @@ class MathematicalFraction:
 def execute_application():
     fract = MathematicalFraction(1, 2)
     fract1 = MathematicalFraction(2, 4)
-    print(fract == fract1)
 
     print(fract, fract1)
+    print(fract == fract1)
 
 
 if __name__ == "__main__":
