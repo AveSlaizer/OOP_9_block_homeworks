@@ -23,7 +23,7 @@ class InitializationFractionError(Exception):
         self.value = value
 
 
-class Nominator:
+class Numinator:
 
     @staticmethod
     def _is_integer(value):
@@ -42,7 +42,7 @@ class Nominator:
         setattr(instance, self.name, value)
 
 
-class Denominator(Nominator):
+class Denominator(Numinator):
 
     def __set__(self, instance, value):
         if value == 0:
@@ -52,7 +52,7 @@ class Denominator(Nominator):
 
 class MathematicalFraction:
 
-    __numerator = Nominator()
+    __numerator = Numinator()
     __denominator = Denominator()
 
     def __init__(self, numerator: int, denominator: int):
@@ -62,13 +62,13 @@ class MathematicalFraction:
 
     def __convert_fraction(self):
         """Конвертирует дробь к единообразному виду. Если дробь отрицательная - то числитель отрицательный,
-        знаменатель положительный."""
+        знаменатель положительный, если положительная - то числитель и знаменатель положительные."""
         if self.__numerator * self.__denominator < 0:
             self.__numerator = -1 * abs(self.__numerator)
             self.__denominator = abs(self.__denominator)
         if self.__numerator < 0 and self.__denominator < 0:
-            self.__numerator = abs(self.__numerator)
-            self.__denominator = abs(self.__denominator)
+            self.__numerator *= -1
+            self.__denominator *= -1
 
 
     def shorten_fraction(self):
@@ -122,7 +122,7 @@ class MathematicalFraction:
         return f"{'- ' if self.__numerator < 0 else ''}{abs(self.__numerator)} / {self.__denominator}"
 
     def __hash__(self):
-        return hash(self.__numerator / self.__denominator)
+        return hash((self.__numerator, self.__denominator))
 
     def __eq__(self, other):
         self.__is_math_fraction(other)
@@ -154,13 +154,35 @@ class MathematicalFraction:
         numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
         return numerator1 >= numerator2
 
+    def __add__(self, other):
+        if isinstance(other, MathematicalFraction):
+            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            new_fraction = MathematicalFraction(numerator1 + numerator2, denominator)
+        elif isinstance(other, int):
+            new_fraction = MathematicalFraction(self.__numerator + self.__denominator * other, self.__denominator)
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        new_fraction.shorten_fraction()
+        return new_fraction
+
+    def __sub__(self, other):
+        if isinstance(other, MathematicalFraction):
+            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            new_fraction = MathematicalFraction(numerator1 - numerator2, denominator)
+        elif isinstance(other, int):
+            new_fraction = MathematicalFraction(self.__numerator - self.__denominator * other, self.__denominator)
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        new_fraction.shorten_fraction()
+        return new_fraction
+
 
 def execute_application():
     fract = MathematicalFraction(1, 2)
-    fract1 = MathematicalFraction(2, 4)
+    fract1 = MathematicalFraction(1, 2)
 
-    print(fract, fract1)
-    print(fract == fract1)
+    fract2 = fract - fract1
+    print(fract2)
 
 
 if __name__ == "__main__":
