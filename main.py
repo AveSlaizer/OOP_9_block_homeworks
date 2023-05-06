@@ -23,7 +23,7 @@ class InitializationFractionError(Exception):
         self.value = value
 
 
-class Numinator:
+class Numerator:
 
     @staticmethod
     def _is_integer(value):
@@ -42,7 +42,7 @@ class Numinator:
         setattr(instance, self.name, value)
 
 
-class Denominator(Numinator):
+class Denominator(Numerator):
 
     def __set__(self, instance, value):
         if value == 0:
@@ -52,7 +52,7 @@ class Denominator(Numinator):
 
 class MathematicalFraction:
 
-    __numerator = Numinator()
+    __numerator = Numerator()
     __denominator = Denominator()
 
     def __init__(self, numerator: int, denominator: int):
@@ -114,9 +114,17 @@ class MathematicalFraction:
     def numerator(self):
         return self.__numerator
 
+    @numerator.setter
+    def numerator(self, value):
+        self.__numerator = value
+
     @property
     def denominator(self):
         return self.__denominator
+
+    @denominator.setter
+    def denominator(self, value):
+        self.__denominator = value
 
     def __str__(self):
         return f"{'- ' if self.__numerator < 0 else ''}{abs(self.__numerator)} / {self.__denominator}"
@@ -176,13 +184,30 @@ class MathematicalFraction:
         new_fraction.shorten_fraction()
         return new_fraction
 
+    def __iadd__(self, other):
+        if isinstance(other, MathematicalFraction):
+            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            self.__numerator = numerator1 + numerator2
+            self.__denominator = denominator
+        elif isinstance(other, int):
+            self.__numerator = self.__denominator * other
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+
 
 def execute_application():
     fract = MathematicalFraction(1, 2)
     fract1 = MathematicalFraction(1, 2)
+    fract2 = MathematicalFraction(1, 2)
 
-    fract2 = fract - fract1
-    print(fract2)
+
+    fract = fract + fract1
+    print(fract)
+
+    fract1 += fract2
+    print(fract1)
+
+
 
 
 if __name__ == "__main__":
