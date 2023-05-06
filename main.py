@@ -60,7 +60,7 @@ class MathematicalFraction:
         :param denominator bool: триггер, определяет, вернется ли общий знаменатель
         :return:
                 Union[tuple[int, int], tuple[int, int, int]]:
-                 Числитель первой дроби, числитель второй дроби, общий знаменатель
+                 Числитель первой дроби, числитель второй дроби и общий знаменатель, если denominator == True
         """
         self.__is_math_fraction(other)
 
