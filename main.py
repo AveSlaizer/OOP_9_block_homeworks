@@ -20,11 +20,8 @@ class InitializationCircleError(Exception):
 
 class Circle:
     def __init__(self, radius: Union[int, float]):
-        if radius <= 0:
-            raise InitializationCircleError("Ошибка инициализации окружности. "
-                                            "Радиус не может быть меньше или равен нулю")
-        self.__radius = radius
-        self.__length = None
+        self.radius = radius
+        self.__length = self.calc_circumference_length()
 
     def calc_circumference_length(self):
         self.__length = self.__radius * 2 * pi
@@ -33,6 +30,14 @@ class Circle:
     @property
     def radius(self):
         return self.__radius
+
+    @radius.setter
+    def radius(self, radius: Union[int, float]):
+        if not isinstance(radius, Union[int, float]):
+            raise TypeError(f"Недопустимый тип данных. Необходим 'int', 'float', получен '{radius.__class__.__name__}'")
+        if radius <= 0:
+            raise InitializationCircleError("Ошибка! Радиус не может быть меньше или равен нулю")
+        self.__radius = radius
 
     @property
     def lenght(self):
@@ -74,8 +79,6 @@ class Circle:
         if isinstance(other, Union[int, float]):
             new_radius = self.__radius + other
             new_circle = Circle(new_radius)
-            if not self.__length is None:
-                new_circle.calc_circumference_length()
             return new_circle
         raise TypeError(f"Невозможно выполнить операцию сложения "
                         f"между типом \'{self.__class__.__name__}\' "
@@ -84,11 +87,9 @@ class Circle:
     def __iadd__(self, other):
         if isinstance(other, Union[int, float]):
             self.__radius = self.__radius + other
+            self.calc_circumference_length()
             if self.__radius <= 0:
-                raise InitializationCircleError("Ошибка инициализации окружности. "
-                                                "Радиус не может быть меньше или равен нулю")
-            if not self.__length is None:
-                self.calc_circumference_length()
+                raise InitializationCircleError("Ошибка! Радиус не может быть меньше или равен нулю")
             return self
         raise TypeError(f"Невозможно выполнить операцию сложения "
                         f"между типом \'{self.__class__.__name__}\' "
@@ -98,8 +99,6 @@ class Circle:
         if isinstance(other, Union[int, float]):
             new_radius = self.__radius - other
             new_circle = Circle(new_radius)
-            if not self.__length is None:
-                new_circle.calc_circumference_length()
             return new_circle
         raise TypeError(f"Невозможно выполнить операцию вычитания "
                         f"между типом \'{self.__class__.__name__}\' "
@@ -108,11 +107,9 @@ class Circle:
     def __isub__(self, other):
         if isinstance(other, Union[int, float]):
             self.__radius = self.__radius - other
+            self.calc_circumference_length()
             if self.__radius <= 0:
-                raise InitializationCircleError("Ошибка инициализации окружности. "
-                                                "Радиус не может быть меньше или равен нулю")
-            if not self.__length is None:
-                self.calc_circumference_length()
+                raise InitializationCircleError("Ошибка! Радиус не может быть меньше или равен нулю")
             return self
         raise TypeError(f"Невозможно выполнить операцию вычитания "
                         f"между типом \'{self.__class__.__name__}\' "
@@ -120,18 +117,10 @@ class Circle:
 
 
 def execute_application():
-    circ = Circle(5)
-
+    circ = Circle(3)
     print(circ.__dict__)
-    circ += 1
-    print(circ.__dict__)
-    circ2 = circ + 2
+    circ2 = circ + -5
     print(circ2.__dict__)
-    try:
-        circ3 = circ + (-6)
-    except InitializationCircleError as e:
-        print(e)
-
 
 
 if __name__ == "__main__":
