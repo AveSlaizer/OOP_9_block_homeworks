@@ -113,15 +113,26 @@ class CashRegister:
         self.__is_retail_item(item)
         self.__item_list.append(item)
 
+    def get_total(self):
+        return sum([item.price for item in self.item_list])
+
 def execute_application():
 
-    football_ball = RetailItem("Футбольный мяч", 10, 1200)
-    green_t_shirt = RetailItem("Зеленая футболка", 18, 740)
-    sneakers = RetailItem("Кроссовки", 21, 3200)
+    football_ball = RetailItem("Футбольный мяч", 10, 100)
+    green_t_shirt = RetailItem("Зеленая футболка", 18, 700)
+    sneakers = RetailItem("Кроссовки", 21, 300)
 
     casher = CashRegister()
 
     retail_list = [football_ball, green_t_shirt, sneakers]
+
+    for item in retail_list:
+        casher.purchase_item(item)
+
+    for item in casher.item_list:
+        print(item)
+
+    print(casher.get_total())
 
 
 
