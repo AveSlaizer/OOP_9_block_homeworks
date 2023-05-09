@@ -68,7 +68,7 @@ class MathematicalFraction:
             self.__numerator = int(self.__numerator / value)
             self.__denominator = int(self.__denominator / value)
 
-    def lead_to_common_denominator(self, other, denominator: bool = True) \
+    def __lead_to_common_denominator(self, other, denominator: bool = True) \
             -> Union[tuple[int, int], tuple[int, int, int]]:
         """
         Возвращает кортеж с числителем первой дроби, числителем второй дроби и общий знаменатель дробей.
@@ -120,37 +120,37 @@ class MathematicalFraction:
 
     def __eq__(self, other):
         self.__is_math_fraction(other)
-        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        numerator1, numerator2 = self.__lead_to_common_denominator(other, denominator=False)
         return numerator1 == numerator2
 
     def __ne__(self, other):
         self.__is_math_fraction(other)
-        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        numerator1, numerator2 = self.__lead_to_common_denominator(other, denominator=False)
         return numerator1 != numerator2
 
     def __lt__(self, other):
         self.__is_math_fraction(other)
-        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        numerator1, numerator2 = self.__lead_to_common_denominator(other, denominator=False)
         return numerator1 < numerator2
 
     def __le__(self, other):
         self.__is_math_fraction(other)
-        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        numerator1, numerator2 = self.__lead_to_common_denominator(other, denominator=False)
         return numerator1 <= numerator2
 
     def __gt__(self, other):
         self.__is_math_fraction(other)
-        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        numerator1, numerator2 = self.__lead_to_common_denominator(other, denominator=False)
         return numerator1 > numerator2
 
     def __ge__(self, other):
         self.__is_math_fraction(other)
-        numerator1, numerator2 = self.lead_to_common_denominator(other, denominator=False)
+        numerator1, numerator2 = self.__lead_to_common_denominator(other, denominator=False)
         return numerator1 >= numerator2
 
     def __add__(self, other):
         if isinstance(other, MathematicalFraction):
-            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            numerator1, numerator2, denominator = self.__lead_to_common_denominator(other)
             new_fraction = MathematicalFraction(numerator1 + numerator2, denominator)
         elif isinstance(other, int):
             new_fraction = MathematicalFraction(self.__numerator + self.__denominator * other, self.__denominator)
@@ -161,7 +161,7 @@ class MathematicalFraction:
 
     def __sub__(self, other):
         if isinstance(other, MathematicalFraction):
-            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            numerator1, numerator2, denominator = self.__lead_to_common_denominator(other)
             new_fraction = MathematicalFraction(numerator1 - numerator2, denominator)
         elif isinstance(other, int):
             new_fraction = MathematicalFraction(self.__numerator - self.__denominator * other, self.__denominator)
@@ -172,7 +172,7 @@ class MathematicalFraction:
 
     def __iadd__(self, other):
         if isinstance(other, MathematicalFraction):
-            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            numerator1, numerator2, denominator = self.__lead_to_common_denominator(other)
             self.__numerator = numerator1 + numerator2
             self.__denominator = denominator
         elif isinstance(other, int):
@@ -184,7 +184,7 @@ class MathematicalFraction:
 
     def __isub__(self, other):
         if isinstance(other, MathematicalFraction):
-            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            numerator1, numerator2, denominator = self.__lead_to_common_denominator(other)
             self.__numerator = numerator1 - numerator2
             self.__denominator = denominator
         elif isinstance(other, int):
@@ -194,17 +194,41 @@ class MathematicalFraction:
         self.shorten_fraction()
         return self
 
+    def __mul__(self, other):
+        if isinstance(other, MathematicalFraction):
+            numerator = self.__numerator * other.__numerator
+            denominator = self.__denominator * other.__denominator
+            new_fraction = MathematicalFraction(numerator, denominator)
+        elif isinstance(other, int):
+            new_fraction = MathematicalFraction(self.__numerator * other, self.__denominator)
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        new_fraction.shorten_fraction()
+        return new_fraction
+
+    def __imul__(self, other):
+        if isinstance(other, MathematicalFraction):
+            self.__numerator *= other.__numerator
+            self.__denominator *= other.__denominator
+        elif isinstance(other, int):
+            self.__numerator = self.__numerator * other
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        self.shorten_fraction()
+        return self
+
+
 
 
 def execute_application():
     fract = MathematicalFraction(1, 2)
     fract1 = MathematicalFraction(1, 2)
-    fract2 = MathematicalFraction(1, 4)
+    fract2 = MathematicalFraction(1, 2)
 
-    fract = fract + fract1
+    fract = fract1 * 8
     print(fract)
 
-    fract1 -= fract2
+    fract1 *= fract2
     print(fract1)
 
 
