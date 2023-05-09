@@ -1,6 +1,5 @@
 from math import gcd
 from typing import Union
-from abc import ABC
 
 """
 Задание 1.
@@ -60,8 +59,6 @@ class MathematicalFraction:
     def shorten_fraction(self):
         """
         Сокращает дробь
-
-        :return: None
         """
         value = gcd(self.__numerator, self.__denominator)
         if value > 1:
@@ -100,17 +97,9 @@ class MathematicalFraction:
     def numerator(self):
         return self.__numerator
 
-    @numerator.setter
-    def numerator(self, value):
-        self.__numerator = value
-
     @property
     def denominator(self):
         return self.__denominator
-
-    @denominator.setter
-    def denominator(self, value):
-        self.__denominator = value
 
     def __str__(self):
         return f"{'- ' if self.__numerator < 0 else ''}{abs(self.__numerator)} / {self.__denominator}"
@@ -239,7 +228,6 @@ class MathematicalFraction:
             raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
         self.shorten_fraction()
         return self
-
 
 
 def execute_application():
