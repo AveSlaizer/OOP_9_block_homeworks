@@ -217,6 +217,28 @@ class MathematicalFraction:
         self.shorten_fraction()
         return self
 
+    def __truediv__(self, other):
+        if isinstance(other, MathematicalFraction):
+            numerator = self.__numerator * other.__denominator
+            denominator = self.__denominator * other.__numerator
+            new_fraction = MathematicalFraction(numerator, denominator)
+        elif isinstance(other, int):
+            new_fraction = MathematicalFraction(self.__numerator, self.__denominator * other)
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        new_fraction.shorten_fraction()
+        return new_fraction
+
+    def __itruediv__(self, other):
+        if isinstance(other, MathematicalFraction):
+            self.__numerator *= other.__denominator
+            self.__denominator *= other.__numerator
+        elif isinstance(other, int):
+            self.__denominator *= other
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        self.shorten_fraction()
+        return self
 
 
 
@@ -225,11 +247,11 @@ def execute_application():
     fract1 = MathematicalFraction(1, 2)
     fract2 = MathematicalFraction(1, 2)
 
-    fract = fract1 * 8
+    fract = fract1 / 8
     print(fract)
 
-    fract1 *= fract2
-    print(fract1)
+    fract2 /= 2
+    print(fract2)
 
 
 if __name__ == "__main__":
