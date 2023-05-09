@@ -94,11 +94,36 @@ class RetailItem:
         return f"{self.__description}, {self.__quantity} шт., {self.__price} руб."
 
 
+class CashRegister:
+
+    def __init__(self):
+        self.__item_list = []
+
+    @property
+    def item_list(self):
+        for item in self.__item_list:
+            yield item
+
+    @staticmethod
+    def __is_retail_item(item):
+        if not isinstance(item, RetailItem):
+            raise TypeError(f"Недопустимый тип данных \'{item.__class__.__name__}\'. Ожидался \'RetailItem\'")
+
+    def purchase_item(self, item):
+        self.__is_retail_item(item)
+        self.__item_list.append(item)
+
 def execute_application():
 
-    car = RetailItem("ААааавтомобиль", 10, 12)
+    football_ball = RetailItem("Футбольный мяч", 10, 1200)
+    green_t_shirt = RetailItem("Зеленая футболка", 18, 740)
+    sneakers = RetailItem("Кроссовки", 21, 3200)
 
-    print(car)
+    casher = CashRegister()
+
+    retail_list = [football_ball, green_t_shirt, sneakers]
+
+
 
 
 if __name__ == "__main__":
