@@ -64,32 +64,86 @@ class NSCalculator:
             raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'hex'")
 
     @staticmethod
-    def decimal_to_octal(number: Digit):
+    def dec_to_oct(number: Digit):
         NSCalculator.__is_dec(number)
         value = oct(int(number.value))[2:]
         number_system = "oct"
         return Digit(value, number_system)
 
     @staticmethod
-    def decimal_to_bin(number: Digit):
+    def dec_to_bin(number: Digit):
         NSCalculator.__is_dec(number)
         value = bin(int(number.value))[2:]
         number_system = "bin"
         return Digit(value, number_system)
 
     @staticmethod
-    def decimal_to_hex(number: Digit):
+    def dec_to_hex(number: Digit):
         NSCalculator.__is_dec(number)
         value = hex(int(number.value))[2:]
         number_system = "hex"
         return Digit(value, number_system)
 
+    @staticmethod
+    def bin_to_dec(number: Digit):
+        NSCalculator.__is_bin(number)
+        value = str(int(number.value, 2))
+        number_system = "dec"
+        return Digit(value, number_system)
+
+    @staticmethod
+    def oct_to_dec(number: Digit):
+        NSCalculator.__is_oct(number)
+        value = str(int(number.value, 8))
+        number_system = "dec"
+        return Digit(value, number_system)
+
+    @staticmethod
+    def hex_to_dec(number: Digit):
+        NSCalculator.__is_hex(number)
+        value = str(int(number.value, 16))
+        number_system = "dec"
+        return Digit(value, number_system)
+
+    @staticmethod
+    def bin_to_oct(number: Digit):
+        return NSCalculator.dec_to_oct(NSCalculator.bin_to_dec(number))
+
+    @staticmethod
+    def bin_to_hex(number: Digit):
+        return NSCalculator.dec_to_hex(NSCalculator.bin_to_dec(number))
+
+    @staticmethod
+    def oct_to_bin(number: Digit):
+        return NSCalculator.dec_to_bin(NSCalculator.oct_to_dec(number))
+
+    @staticmethod
+    def oct_to_hex(number: Digit):
+        return NSCalculator.dec_to_hex(NSCalculator.oct_to_dec(number))
+
+    @staticmethod
+    def hex_to_bin(number: Digit):
+        return NSCalculator.dec_to_bin(NSCalculator.hex_to_dec(number))
+
+    @staticmethod
+    def hex_to_oct(number: Digit):
+        return NSCalculator.dec_to_oct(NSCalculator.hex_to_dec(number))
+
+
+
 
 def execute_application():
     numb = Digit("16", "dec")
 
-    numb = NSCalculator.decimal_to_hex(numb)
+    numb = NSCalculator.dec_to_bin(numb)
 
+    print(numb.__dict__)
+
+    numb = NSCalculator.bin_to_oct(numb)
+
+    print(numb.__dict__)
+
+    numb = NSCalculator.oct_to_dec(numb)
     print(numb.__dict__)
 
 
