@@ -37,9 +37,16 @@ CashRegister.
 class RetailItem:
 
     def __init__(self, description: str, quantity: int, price: float):
-        self.__description = description
+        self.__description = self.__is_valid_description(description)
         self.__quantity = self.__is_valid_quantity(quantity)
         self.__price = self.__is_valid_price(price)
+
+    @staticmethod
+    def __is_valid_description(value):
+        if not isinstance(value, str):
+            raise TypeError(f"Не верный тип данных: \'{value.__class__.__name__}\' "
+                            f"ожидался 'str'")
+        return value
 
     @staticmethod
     def __is_valid_quantity(value):
@@ -58,6 +65,30 @@ class RetailItem:
         if value <= 0:
             raise ValueError(f"Стоимость не может быть равной {value}. Требуется число больше 0")
         return value
+
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self, description):
+        self.__description = self.__is_valid_description(description)
+
+    @property
+    def quantity(self):
+        return self.__quantity
+
+    @quantity.setter
+    def quantity(self, quantity):
+        self.__quantity = self.__is_valid_quantity(quantity)
+
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, price):
+        self.__price = self.__is_valid_price(price)
 
     def __str__(self):
         return f"{self.__description}, {self.__quantity} шт., {self.__price} руб."
