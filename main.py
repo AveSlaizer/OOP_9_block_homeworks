@@ -91,7 +91,10 @@ class RetailItem:
         self.__price = self.__is_valid_price(price)
 
     def __str__(self):
-        return f"{self.__description}, {self.__quantity} шт., {self.__price} руб."
+        return f"{self.__description}: {self.__price} руб."
+
+    def info(self):
+        print(f"{self.__description}, {self.__quantity} шт., {self.__price} руб.")
 
 
 class CashRegister:
@@ -116,25 +119,31 @@ class CashRegister:
     def get_total(self):
         return sum([item.price for item in self.item_list])
 
-def execute_application():
+    def show_iterns(self):
+        if not self.__item_list:
+            print("Корзина пуста")
+        else:
+            for item in self.item_list:
+                print(item)
 
+    def clear(self):
+        self.__item_list.clear()
+
+
+def execute_application():
     football_ball = RetailItem("Футбольный мяч", 10, 100)
     green_t_shirt = RetailItem("Зеленая футболка", 18, 700)
-    sneakers = RetailItem("Кроссовки", 21, 300)
-
-    casher = CashRegister()
-
+    sneakers = RetailItem("Кроссовки абибас", 21, 1800)
     retail_list = [football_ball, green_t_shirt, sneakers]
+    casher = CashRegister()
 
     for item in retail_list:
         casher.purchase_item(item)
 
-    for item in casher.item_list:
-        print(item)
+    print("Товары в корзине:")
+    casher.show_iterns()
 
-    print(casher.get_total())
-
-
+    print(f"Итоговая стоимость товаров в корзине: {casher.get_total()}")
 
 
 if __name__ == "__main__":
