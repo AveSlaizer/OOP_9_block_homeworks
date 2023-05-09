@@ -44,32 +44,48 @@ class Digit:
 class NSCalculator:
 
     @staticmethod
-    def decimal_to_octal(number: Digit):
+    def __is_dec(number: Digit):
         if not number.number_system == "dec":
             raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'dec'")
+
+    @staticmethod
+    def __is_bin(number: Digit):
+        if not number.number_system == "bin":
+            raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'bin'")
+
+    @staticmethod
+    def __is_oct(number: Digit):
+        if not number.number_system == "oct":
+            raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'oct'")
+
+    @staticmethod
+    def __is_hex(number: Digit):
+        if not number.number_system == "hex":
+            raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'hex'")
+
+    @staticmethod
+    def decimal_to_octal(number: Digit):
+        NSCalculator.__is_dec(number)
         value = oct(int(number.value))[2:]
         number_system = "oct"
         return Digit(value, number_system)
 
     @staticmethod
     def decimal_to_bin(number: Digit):
-        if not number.number_system == "dec":
-            raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'dec'")
+        NSCalculator.__is_dec(number)
         value = bin(int(number.value))[2:]
         number_system = "bin"
         return Digit(value, number_system)
 
     @staticmethod
     def decimal_to_hex(number: Digit):
-        if not number.number_system == "dec":
-            raise ValueError(f"Недопустимое значение системы счисления '{number.number_system}' ожидалось 'dec'")
+        NSCalculator.__is_dec(number)
         value = hex(int(number.value))[2:]
         number_system = "hex"
         return Digit(value, number_system)
 
 
 def execute_application():
-
     numb = Digit("16", "dec")
 
     numb = NSCalculator.decimal_to_hex(numb)
