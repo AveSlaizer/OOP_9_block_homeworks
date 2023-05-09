@@ -1,5 +1,6 @@
 from math import gcd
 from typing import Union
+from abc import ABC
 
 """
 Задание 1.
@@ -23,42 +24,28 @@ class InitializationFractionError(Exception):
         self.value = value
 
 
-class Numerator:
+class MathematicalFraction:
+
+    def __init__(self, numerator: int, denominator: int):
+        self.__numerator = self.__is_numerator(numerator)
+        self.__denominator = self.__is_denominator(denominator)
+        self.__convert_fraction()
 
     @staticmethod
-    def _is_integer(value):
+    def __is_numerator(value: int):
         if not isinstance(value, int):
             raise TypeError(f"Не верный тип данных: \'{value.__class__.__name__}\' "
                             f"ожидался 'int'")
+        return value
 
-    def __set_name__(self, owner, name):
-        self.name = "__" + name
-
-    def __get__(self, instance, owner):
-        return getattr(instance, self.name)
-
-    def __set__(self, instance, value):
-        self._is_integer(value)
-        setattr(instance, self.name, value)
-
-
-class Denominator(Numerator):
-
-    def __set__(self, instance, value):
+    @staticmethod
+    def __is_denominator(value: int):
+        if not isinstance(value, int):
+            raise TypeError(f"Не верный тип данных: \'{value.__class__.__name__}\' "
+                            f"ожидался 'int'")
         if value == 0:
             raise InitializationFractionError("Невозможно создать дробь со знаменателем равным", value)
-        super().__set__(instance, value)
-
-
-class MathematicalFraction:
-
-    __numerator = Numerator()
-    __denominator = Denominator()
-
-    def __init__(self, numerator: int, denominator: int):
-        self.__numerator = numerator
-        self.__denominator = denominator
-        self.__convert_fraction()
+        return value
 
     def __convert_fraction(self):
         """Конвертирует дробь к единообразному виду. Если дробь отрицательная - то числитель отрицательный,
@@ -69,7 +56,6 @@ class MathematicalFraction:
         if self.__numerator < 0 and self.__denominator < 0:
             self.__numerator *= -1
             self.__denominator *= -1
-
 
     def shorten_fraction(self):
         """
@@ -190,24 +176,36 @@ class MathematicalFraction:
             self.__numerator = numerator1 + numerator2
             self.__denominator = denominator
         elif isinstance(other, int):
-            self.__numerator = self.__denominator * other
+            self.__numerator = self.__numerator + self.__denominator * other
         else:
             raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        self.shorten_fraction()
+        return self
+
+    def __isub__(self, other):
+        if isinstance(other, MathematicalFraction):
+            numerator1, numerator2, denominator = self.lead_to_common_denominator(other)
+            self.__numerator = numerator1 - numerator2
+            self.__denominator = denominator
+        elif isinstance(other, int):
+            self.__numerator = self.__numerator - self.__denominator * other
+        else:
+            raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
+        self.shorten_fraction()
+        return self
+
 
 
 def execute_application():
     fract = MathematicalFraction(1, 2)
     fract1 = MathematicalFraction(1, 2)
-    fract2 = MathematicalFraction(1, 2)
-
+    fract2 = MathematicalFraction(1, 4)
 
     fract = fract + fract1
     print(fract)
 
-    fract1 += fract2
+    fract1 -= fract2
     print(fract1)
-
-
 
 
 if __name__ == "__main__":
