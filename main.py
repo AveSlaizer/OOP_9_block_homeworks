@@ -78,11 +78,15 @@ class MathematicalFraction:
                  Числитель первой дроби, числитель второй дроби и общий знаменатель, если denominator == True
         """
         self.__is_math_fraction(other)
+        if self.__denominator == other.__denominator:
+            new_denominator = self.__denominator
+        else:
+            new_denominator = self.__denominator * other.__denominator
 
         if denominator:
             value_tuple = (self.__numerator * other.__denominator,
                            other.__numerator * self.__denominator,
-                           other.__denominator * self.__denominator)
+                           new_denominator)
         else:
             value_tuple = (self.__numerator * other.__denominator,
                            other.__numerator * self.__denominator)
@@ -232,13 +236,13 @@ class MathematicalFraction:
 
 def execute_application():
     fract = MathematicalFraction(1, 2)
-    fract1 = MathematicalFraction(1, 2)
-    fract2 = MathematicalFraction(1, 2)
+    fract1 = MathematicalFraction(1, 3)
+    fract2 = MathematicalFraction(1, 4)
 
-    fract = fract1 / 8
+    fract = fract1 + fract2
     print(fract)
 
-    fract2 /= 2
+    fract2 += fract1
     print(fract2)
 
 
