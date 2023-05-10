@@ -1,6 +1,5 @@
 import pickle, json
 
-
 """
 Задание 1.
 Создайте класс «Самолет». Наполните его необходимыми характеристиками и методами. Реализуйте упаковку и
@@ -54,6 +53,7 @@ class AirPlanePickleAdapter:
                 return AirPlane(obj["name"], obj["engine_type"], obj["engine_qty"])
         except AttributeError as e:
             print(e)
+
 
 class AirPlaneJSONAdapter:
 
