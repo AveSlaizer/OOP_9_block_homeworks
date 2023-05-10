@@ -1,6 +1,5 @@
 import pickle
 
-
 """
 Задание 1.
 Создайте класс «Самолет». Наполните его необходимыми характеристиками и методами. Реализуйте упаковку и
@@ -16,7 +15,9 @@ class AirPlane:
         self.__engine_qty = engine_qty
 
     def __str__(self):
-        return f"{self.__name}, тип двигателей: {self.__engine_type}, количество двигателей: {self.__engine_qty}"
+        return f"Название: {self.__name}, " \
+               f"тип двигателей: {self.__engine_type}, " \
+               f"количество двигателей: {self.__engine_qty}"
 
     @property
     def name(self):
@@ -29,6 +30,7 @@ class AirPlane:
     @property
     def engine_qty(self):
         return self.__engine_qty
+
 
 class AirPlanePickleAdapter:
 
@@ -53,10 +55,13 @@ class AirPlanePickleAdapter:
             print(e)
 
 
-
-
 def execute_application():
-    pass
+    plane = AirPlane("Миг", "Реактивный", 2)
+    print(plane)
+    data = AirPlanePickleAdapter.to_pickle(plane)
+    print(data)
+    new_plane = AirPlanePickleAdapter.from_pickle(data)
+    print(new_plane)
 
 
 if __name__ == "__main__":
