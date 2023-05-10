@@ -1,4 +1,4 @@
-import pickle
+import pickle, json
 
 
 """
@@ -55,13 +55,35 @@ class AirPlanePickleAdapter:
         except AttributeError as e:
             print(e)
 
+class AirPlaneJSONAdapter:
+
+    @staticmethod
+    def to_json(plane: AirPlane):
+        if not isinstance(plane, AirPlane):
+            raise TypeError(f"Недопустимый тип данных {plane.__class__.__name__}, ожидался 'AirPlane'")
+        return json.dumps({
+            "className": plane.__class__.__name__,
+            "name": plane.name,
+            "engine_type": plane.engine_type,
+            "engine_qty": plane.engine_qty
+        })
+
+    @staticmethod
+    def from_json(data):
+        obj = json.loads(data)
+        try:
+            if obj["className"] == "AirPlane":
+                return AirPlane(obj["name"], obj["engine_type"], obj["engine_qty"])
+        except AttributeError as e:
+            print(e)
+
 
 def execute_application():
     plane = AirPlane("Миг", "Реактивный", 2)
     print(plane)
-    data = AirPlanePickleAdapter.to_pickle(plane)
+    data = AirPlaneJSONAdapter.to_json(plane)
     print(data)
-    new_plane = AirPlanePickleAdapter.from_pickle(data)
+    new_plane = AirPlaneJSONAdapter.from_json(data)
     print(new_plane)
 
 
