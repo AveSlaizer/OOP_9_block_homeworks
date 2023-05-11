@@ -2,7 +2,8 @@ from fraction import MathematicalFraction, FractionPickleAdapter, FractionJSONAd
 
 """
 Задание 3
-К уже реализованному классу «Дробь» добавьте возможность упаковки и распаковки данных с использованием json и pickle
+К уже реализованному классу «Дробь» добавьте возможность 
+упаковки и распаковки данных с использованием json и pickle
 """
 
 
