@@ -1,3 +1,6 @@
+import pickle, json
+
+
 class NegativeTimeError(Exception):
     def __init__(self, text: str, value: int):
         self.text = text
@@ -16,6 +19,10 @@ class Time:
         if value < 0:
             raise InitializationTimeError("Переданное значение не может быть отрицательным")
         self.__value = value
+
+    @property
+    def value(self):
+        return self.__value
 
     @staticmethod
     def __format(time):
@@ -124,3 +131,47 @@ class Time:
         raise TypeError(f"Невозможно выполнить операцию вычитание "
                         f"между типом {self.__class__.__name__} "
                         f"и {other.__class__.__name__}")
+
+
+class TimePickleAdapter:
+
+    @staticmethod
+    def to_pickle(time: Time):
+        if not isinstance(time, Time):
+            raise TypeError(f"Недопустимый тип данных '{time.__class__.__name__}', "
+                            f"ожидался 'Time'")
+        return pickle.dumps({
+            "className": time.__class__.__name__,
+            "value": time.value
+        })
+
+    @staticmethod
+    def from_pickle(data):
+        obj = pickle.loads(data)
+        try:
+            assert obj["className"] == "Time", "Ошибка обработки данных"
+            return Time(obj["value"])
+        except AttributeError:
+            print("Ошибка обработки данных")
+
+
+class TimeJSONAdapter:
+
+    @staticmethod
+    def to_json(time: Time):
+        if not isinstance(time, Time):
+            raise TypeError(f"Недопустимый тип данных '{time.__class__.__name__}', "
+                            f"ожидался 'Time'")
+        return json.dumps({
+            "className": time.__class__.__name__,
+            "value": time.value
+        })
+
+    @staticmethod
+    def from_json(data):
+        obj = json.loads(data)
+        try:
+            assert obj["className"] == "Time", "Ошибка обработки данных"
+            return Time(obj["value"])
+        except AttributeError:
+            print("Ошибка обработки данных")
