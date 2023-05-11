@@ -1,5 +1,6 @@
 from math import gcd
 from typing import Union
+import pickle, json
 
 
 class InitializationFractionError(Exception):
@@ -218,3 +219,49 @@ class MathematicalFraction:
             raise TypeError(f"Недопустимый тип данных \'{other.__class__.__name__}\'")
         self.shorten_fraction()
         return self
+
+
+class FractionPickleAdapter:
+
+    @staticmethod
+    def to_pickle(fraction: MathematicalFraction):
+        if not isinstance(fraction, MathematicalFraction):
+            raise TypeError(f"Недопустимый тип данных '{fraction.__class__.__name__}', "
+                            f"ожидался 'MathematicalFraction'")
+        return pickle.dumps({
+            "className": fraction.__class__.__name__,
+            "numerator": fraction.numerator,
+            "denominator": fraction.denominator
+        })
+
+    @staticmethod
+    def from_pickle(data):
+        obj = pickle.loads(data)
+        try:
+            assert obj["className"] == "MathematicalFraction", "Ошибка обработки данных"
+            return MathematicalFraction(obj["numerator"], obj["denominator"])
+        except AttributeError:
+            print("Ошибка обработки данных")
+
+
+class FractionJSONAdapter:
+
+    @staticmethod
+    def to_json(fraction: MathematicalFraction):
+        if not isinstance(fraction, MathematicalFraction):
+            raise TypeError(f"Недопустимый тип данных '{fraction.__class__.__name__}', "
+                            f"ожидался 'MathematicalFraction'")
+        return json.dumps({
+            "className": fraction.__class__.__name__,
+            "numerator": fraction.numerator,
+            "denominator": fraction.denominator
+        })
+
+    @staticmethod
+    def from_json(data):
+        obj = json.loads(data)
+        try:
+            assert obj["className"] == "MathematicalFraction", "Ошибка обработки данных"
+            return MathematicalFraction(obj["numerator"], obj["denominator"])
+        except AttributeError:
+            print("Ошибка обработки данных")

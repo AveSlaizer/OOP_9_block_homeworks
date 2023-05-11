@@ -1,4 +1,4 @@
-import pickle, json
+from fraction import MathematicalFraction, FractionPickleAdapter, FractionJSONAdapter
 
 """
 Задание 3
@@ -7,7 +7,12 @@ import pickle, json
 
 
 def execute_application():
-    pass
+     fraction = MathematicalFraction(1, 2)
+     print(fraction)
+     data = FractionJSONAdapter.to_json(fraction)
+     print(data)
+     new_fraction = FractionJSONAdapter.from_json(data)
+     print(new_fraction)
 
 
 if __name__ == "__main__":
