@@ -15,6 +15,5 @@ def execute_application():
     print(obj)
 
 
-
 if __name__ == "__main__":
     execute_application()
