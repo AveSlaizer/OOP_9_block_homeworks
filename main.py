@@ -1,4 +1,6 @@
 from times import Time, TimePickleAdapter, TimeJSONAdapter
+from airplane import AirPlane, AirPlanePickleAdapter, AirPlaneJSONAdapter
+from fraction import MathematicalFraction, FractionJSONAdapter, FractionPickleAdapter
 
 """
 Задание 4
@@ -8,10 +10,11 @@ from times import Time, TimePickleAdapter, TimeJSONAdapter
 
 def execute_application():
     time = Time(100)
+    plane = AirPlane("MiG", "gas", 2)
     print(time)
     data = TimeJSONAdapter.to_json(time)
     print(data)
-    obj = TimeJSONAdapter.from_json(data)
+    obj = AirPlaneJSONAdapter.from_json(data)
     print(obj)
 
 

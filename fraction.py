@@ -242,6 +242,8 @@ class FractionPickleAdapter:
             return MathematicalFraction(obj["numerator"], obj["denominator"])
         except AttributeError:
             print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
 
 
 class FractionJSONAdapter:
@@ -265,3 +267,5 @@ class FractionJSONAdapter:
             return MathematicalFraction(obj["numerator"], obj["denominator"])
         except AttributeError:
             print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)

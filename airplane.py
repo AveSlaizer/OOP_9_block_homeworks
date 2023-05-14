@@ -47,6 +47,8 @@ class AirPlanePickleAdapter:
             return AirPlane(obj["name"], obj["engine_type"], obj["engine_qty"])
         except AttributeError:
             print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
 
 
 class AirPlaneJSONAdapter:
@@ -70,3 +72,5 @@ class AirPlaneJSONAdapter:
             return AirPlane(obj["name"], obj["engine_type"], obj["engine_qty"])
         except AttributeError:
             print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)

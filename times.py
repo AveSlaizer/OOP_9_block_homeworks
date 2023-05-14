@@ -153,6 +153,8 @@ class TimePickleAdapter:
             return Time(obj["value"])
         except AttributeError:
             print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
 
 
 class TimeJSONAdapter:
@@ -175,3 +177,5 @@ class TimeJSONAdapter:
             return Time(obj["value"])
         except AttributeError:
             print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
