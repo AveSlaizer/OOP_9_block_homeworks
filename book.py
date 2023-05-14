@@ -30,3 +30,53 @@ class Book:
     @property
     def year(self):
         return self.__year
+
+
+class BookPickleAdapter:
+
+    @staticmethod
+    def to_pickle(book: Book):
+        if not isinstance(book, Book):
+            raise TypeError(f"Недопустимый тип данных {book.__class__.__name__}, ожидался 'Book'")
+        return pickle.dumps({
+            "className": book.__class__.__name__,
+            "name": book.name,
+            "author": book.author,
+            "year": book.year
+        })
+
+    @staticmethod
+    def from_pickle(data):
+        obj = pickle.loads(data)
+        try:
+            assert obj["className"] == "Book", "Ошибка обработки данных"
+            return Book(obj["name"], obj["author"], obj["year"])
+        except AttributeError:
+            print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
+
+
+class BookJSONAdapter:
+
+    @staticmethod
+    def to_json(book: Book):
+        if not isinstance(book, Book):
+            raise TypeError(f"Недопустимый тип данных {book.__class__.__name__}, ожидался 'Book'")
+        return json.dumps({
+            "className": book.__class__.__name__,
+            "name": book.name,
+            "author": book.author,
+            "year": book.year
+        })
+
+    @staticmethod
+    def from_json(data):
+        obj = json.loads(data)
+        try:
+            assert obj["className"] == "Book", "Ошибка обработки данных"
+            return Book(obj["name"], obj["author"], obj["year"])
+        except AttributeError:
+            print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
