@@ -1,3 +1,6 @@
+import pickle, json
+
+
 class Stadium:
 
     def __init__(self, name: str, date: str, country: str, city: str):
@@ -27,3 +30,55 @@ class Stadium:
     @property
     def city(self):
         return self.__city
+
+
+class StadiumJSONAdapter:
+
+    @staticmethod
+    def to_json(stadium: Stadium):
+        if not isinstance(stadium, Stadium):
+            raise TypeError(f"Недопустимый тип данных {stadium.__class__.__name__}, ожидался 'Stadium'")
+        return json.dumps({
+            "className": stadium.__class__.__name__,
+            "name": stadium.name,
+            "date": stadium.date,
+            "country": stadium.country,
+            "city": stadium.city
+        })
+
+    @staticmethod
+    def from_json(data):
+        obj = json.loads(data)
+        try:
+            assert obj["className"] == "Stadium", "Ошибка обработки данных"
+            return Stadium(obj["name"], obj["date"], obj["country"], obj["city"])
+        except AttributeError:
+            print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
+
+
+class StadiumPickleAdapter:
+
+    @staticmethod
+    def to_pickle(stadium: Stadium):
+        if not isinstance(stadium, Stadium):
+            raise TypeError(f"Недопустимый тип данных {stadium.__class__.__name__}, ожидался 'Stadium'")
+        return pickle.dumps({
+            "className": stadium.__class__.__name__,
+            "name": stadium.name,
+            "date": stadium.date,
+            "country": stadium.country,
+            "city": stadium.city
+        })
+
+    @staticmethod
+    def from_pickle(data):
+        obj = pickle.loads(data)
+        try:
+            assert obj["className"] == "Stadium", "Ошибка обработки данных"
+            return Stadium(obj["name"], obj["date"], obj["country"], obj["city"])
+        except AttributeError:
+            print("Ошибка обработки данных")
+        except AssertionError as e:
+            print(e)
