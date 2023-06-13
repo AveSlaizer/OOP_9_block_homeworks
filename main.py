@@ -12,25 +12,23 @@
 
 
 class Digit:
-    NUMBER_SYSTEM_LIST = ["bin", "oct", "dec", "hex"]
+    __symbols = "0123456789abcdef"
 
-    def __init__(self, value: str, number_system: str):
-        self.__value = self.__is_valid_value(value)
-        self.__number_system = self.__is_valid_number_system(number_system)
+    def __init__(self, value: str, number_system: int):
+        self.__value, self.__number_system = self.__digit_validator(value, number_system)
 
     @staticmethod
-    def __is_valid_value(value):
+    def __digit_validator(value: str, number_system: int):
         if not isinstance(value, str):
-            raise TypeError(f"Недопустимый тип данных '{value.__class__.__name__}'. Ожидалось 'str'")
-        return value
-
-    @staticmethod
-    def __is_valid_number_system(number_system):
-        if not isinstance(number_system, str):
-            raise TypeError(f"Недопустимый тип данных '{number_system.__class__.__name__}'. Ожидалось 'str'")
-        if not number_system in Digit.NUMBER_SYSTEM_LIST:
-            raise ValueError(f"Недопустимое значение '{number_system}'")
-        return number_system
+            raise ValueError(f"Недопустимый тип данных '{value.__class__.__name__}', ожидался 'str'.")
+        if not isinstance(number_system, int):
+            raise ValueError(f"Недопустимый тип данных '{number_system.__class__.__name__}', ожидался 'int'.")
+        if not (2 <= number_system <= 16):
+            raise ValueError(f"Недопустимое значение системы счисления. Ожидалось число от 2 до 16.")
+        for symbol in value:
+            if symbol not in Digit.__symbols[:number_system]:
+                raise ValueError(f"Недопустимое числовое значение в {number_system}-ой системе счисления.")
+        return value, number_system
 
     @property
     def value(self):
@@ -133,18 +131,7 @@ class NSCalculator:
 
 
 def execute_application():
-    numb = Digit("16", "dec")
-
-    numb = NSCalculator.dec_to_bin(numb)
-
-    print(numb.__dict__)
-
-    numb = NSCalculator.bin_to_oct(numb)
-
-    print(numb.__dict__)
-
-    numb = NSCalculator.oct_to_dec(numb)
-    print(numb.__dict__)
+    numb = Digit("16", 16)
 
 
 if __name__ == "__main__":
