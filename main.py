@@ -27,7 +27,7 @@ class Digit:
             raise ValueError(f"Недопустимое значение системы счисления. Ожидалось число от 2 до 16.")
         for symbol in value:
             if symbol.lower() not in Digit.__symbols[:number_system]:
-                raise ValueError(f"Недопустимое числовое значение в {number_system}-ой системе счисления.")
+                raise ValueError(f"Недопустимая цифра '{symbol}' в {number_system}-ой системе счисления.")
         return value, number_system
 
     def __index__(self):
@@ -62,10 +62,13 @@ class NSCalculator:
 
 
 def execute_application():
-    numb = Digit("11", 2)
-    print(numb.__dict__)
-    numb = NSCalculator.to_dec(numb)
-    print(numb.__dict__)
+    numb = Digit("12", 10)
+    print(f"Значение: {numb.value}, основание СС: {numb.number_system}")
+    print("В шестнадцатеричной СС:", NSCalculator.to_hex(numb).value)
+    print("В десятичной СС:", NSCalculator.to_dec(numb).value)
+    print("В восьмеричной СС:", NSCalculator.to_oct(numb).value)
+    print("В двоичной СС:", NSCalculator.to_bin(numb).value)
+
 
 
 if __name__ == "__main__":
